@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/HomeStyle.css" rel="stylesheet" />
+    <link href="~/Content/ProItemStyle.css" rel="stylesheet" />
+    <link href="~/Content/master-style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/slideshow.js"></script>
+    <script src="~/Scripts/menu.js"></script>
+</head>
+<body>
+    <header>
+        <div class="title"><h2>Quà Tặng Online</h2></div>
+        <div class="menu">
+            <ul>
+                <li><a href="Index">Trang Chủ</a></li>            
+                <li><a href="ProductPage">Sản phẩm</a></li>
+                <li><a href="NewsPage">Blog</a></li>
+                <li><a href="Contact">Liên Hệ</a></li>
+                <li><a href="Cart">Giỏ hàng</a></li>   
+            </ul>
+            <a href="#" id="pull"><img src="~/Content/images/menu-icon.png" /></a>
+        </div>  
+        <div style="clear:both"></div> 
+    </header>
+    <div class="slide">
+            <img id="img1" src="~/Content/images/slide_1.jpg" />  
+            <img id="img2" src="~/Content/images/slide_2.jpg" /> 
+            <img id="img3" src="~/Content/images/slide_3.jpg" />       
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="frament-footer">
+            <h2>Quà tặng online</h2>
+            <address>254A, Nguyễn Đình Chiểu, Q3, TpHCM</address>
+            <p>Tel: 08 2338 246 460</p>
+            <p>Fax: 08 1438 464 4460</p>
+            <p>Email: contact@demo1011.web30s.vn</p>
+        </div>      
+    </div>
+</body>
+</html>

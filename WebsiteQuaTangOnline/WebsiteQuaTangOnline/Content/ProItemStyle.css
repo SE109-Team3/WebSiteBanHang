@@ -1,0 +1,78 @@
+﻿.product-item {
+    width: 220px;
+    height: 360px;
+    padding: 10px;
+    background: #fff;
+    margin: 20px;
+    line-height: 28px;
+    border: 1px dashed #DCD9D9;
+    float: left;
+}
+
+    .product-item:hover {
+        border: 1px solid #DCD9D9;
+    }
+
+    .product-item .img {
+        width: 100%;
+    }
+
+        .product-item .img img {
+            width: 100%;
+        }
+
+    .product-item .name-product {
+        min-height: 35px;
+    }
+
+        .product-item .name-product a {
+            font-weight: 700;
+            color: #303e4b;
+            text-decoration: none;
+        }
+
+            .product-item .name-product a:hover {
+                color: #DAE246;
+            }
+
+    .product-item .price p {
+        color: #f60;
+        font-weight: 600;
+    }
+
+    .product-item .foot .button {
+        background: #DAE246;
+        text-align: center;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #303e4b;
+        font-weight: 600;
+    }
+
+        .product-item .foot .button:hover {
+            color: #fff;
+            animation: rgb 1s ease ;
+            -webkit-animation: rgb 0.5s ease ;
+            background: #f60;
+        }
+
+@keyframes rgb {
+    0%{
+        background-color: #DAE246;
+    }
+    100% {
+        background-color: #f60;
+    }
+}
+
+/*Dùng cho Safari và Chrome*/
+@-webkit-keyframes rgb {
+    0%{
+        background-color: #DAE246;
+    }
+    100% {
+        background-color: #f60;
+    }
+}
+
+

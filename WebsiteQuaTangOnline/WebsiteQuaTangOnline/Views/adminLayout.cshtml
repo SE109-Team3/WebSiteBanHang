@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="~/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+    <!--Phần menu-->
+    <header>
+        <div class="container navbar navbar-default" role="navigation">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
+
+                    <span class="sr-only">Toggle navigation</span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                </button>
+
+            </div>
+
+            <div class="nav nav-tabs" id="collapse">
+
+                <ul class="nav navbar-nav navbar-left">
+                   
+                    <li><a href="/Admin/Login">Trang chủ</a></li>
+
+                    <li><a href="/Admin/AdminProduct">Quản lý sản phẩm</a></li>
+
+                    <li><a href="/Admin/AdminNews">Quản lý tin</a></li>
+
+                    <li><a href="/Admin/AdminCategory">Quản lý loại sản phẩm</a></li>
+
+                    <li><a href="/Admin/AdminShipment">Quản lý giao hàng</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+
+
+    </header>
+    <div class="container">
+        <!--Phần viết mã từng trang-->
+        <div>
+            @RenderBody()
+        </div>
+
+    </div>
+    <script src="~/Bootstrap/js/jquery-3.1.1.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

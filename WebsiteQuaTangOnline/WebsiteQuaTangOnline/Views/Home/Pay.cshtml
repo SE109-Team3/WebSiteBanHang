@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Pay";
+    Layout = "~/Views/MasterPage/MasterPage.cshtml";
+}
+
+<div class="box">
+    <div class="title">
+        <h3>Thanh Toán</h3>
+    </div>
+    <div class="wrap-cart">
+        @using (Html.BeginForm("Pay","Home",FormMethod.Post)){
+        <table class="pay-table">
+            <tr>
+                <td>Họ Tên</td>
+                <td><input type="text" id="tenkhach" /></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" id="tenkhach" /></td>
+            </tr>
+            <tr>
+                <td>Đại chỉ</td>
+                <td><input type="text" id="tenkhach" /></td>
+            </tr>
+            <tr>
+                <td>Số điện thoại</td>
+                <td><input type="text" id="tenkhach" /></td>
+            </tr>
+            <tr>
+                <td>Fax</td>
+                <td><input type="text" id="tenkhach" /></td>
+            </tr>
+            <tr>
+                <td>Nội dung</td>
+                <td><input type="text" id="tenkhach" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr class="header-table">
+                            <th width="60%">Sản phẩm</th>
+                            <th width="10%">Số lượng</th>
+                            <th width="10%">Đơn giá</th>
+                            <th width="15%">Thành tiền</th>
+                        </tr>
+                        <tr>
+                            <td class="pro-info">asdasdasdasd</td>
+                            <td>1</td>
+                            <td>200,000</td>
+                            <td>200,000</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    <input type="submit" value="Đặt hàng" id="submit" style="width:100px"/>
+                </td>
+            </tr>
+        </table>
+        }        
+    </div>
+</div>

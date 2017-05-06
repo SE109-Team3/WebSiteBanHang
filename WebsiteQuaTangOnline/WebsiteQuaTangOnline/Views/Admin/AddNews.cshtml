@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Views/adminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Quản lý tin tức</h1>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-xs-6">
+                            <h3 class="panel-title">Thêm tin tức</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <table class="add-item news">
+                            <tr>
+                                <td class="col-md-2">Mã tin: </td>
+                                <td class="col-md-8"><input type="text" name="matin" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2">Tiêu đề: </td>
+                                <td class="col-md-8"><input type="text" name="tieude" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2">Mô tả: </td>
+                                <td class="col-md-8"><input type="text" name="motatin" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2">Tác giả: </td>
+                                <td class="col-md-8"><input type="text" name="tacgia" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2">Hình ảnh: </td>
+                                <td class="col-md-8"><input type="file" name="fileanh" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2">Nội dung: </td>
+                                <td class="col-md-8">
+                                    <textarea name="noidung" id="noidung"></textarea>
+                                    <script>
+                                        CKEDITOR.replace('noidung', {
+                                            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+                                            filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                            filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                            filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+                                        });
+                                    </script>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="col col-xs-1 text-right">
+                                        <button type="submit" class="btn btn-sm btn-primary btn-create">Thêm mới</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

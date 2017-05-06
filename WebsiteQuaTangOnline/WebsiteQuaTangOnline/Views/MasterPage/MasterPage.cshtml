@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/master-style.css" rel="stylesheet" />
+    <link href="~/Content/MasterStyle.css" rel="stylesheet" />
+    <link href="~/Content/ProItemStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/menu.js"></script>
+
+</head>
+<body>
+    <!--header-->
+    <header>
+        <div class="title"><h2>Quà Tặng Online</h2></div>
+        <div class="menu">
+            <ul>
+                <li><a href="Index">Trang Chủ</a></li>
+                <li><a href="ProductPage">Sản phẩm</a></li>
+                <li><a href="NewsPage">Blog</a></li>
+                <li><a href="Contact">Liên Hệ</a></li>
+                <li><a href="Cart">Giỏ hàng</a></li>
+            </ul>
+            <a href="#" id="pull"><img src="~/Content/images/menu-icon.png" /></a>
+        </div>
+        <div style="clear:both"></div>
+    </header>
+    <div class="panner">
+        <img src="~/Content/images/slide_2.jpg" />
+    </div>
+    <!--Content-->
+    <div class="content">
+        <div class="left">
+            <div class="box">
+                <div class="title"><h3>Danh Mục Quà Tặng</h3></div>
+                <div class="item">
+                    <a href="#">Quà tết</a>
+                </div>
+                <div class="item">
+                    <a href="#">Quà 8/3</a>
+                </div>
+                <div class="item">
+                    <a href="#">Quà sinh nhật</a>
+                </div>
+                <div class="item">
+                    <a href="#">Quà Noel</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="title">
+                    <h3>Quà tặng đặc biệt</h3>
+                </div>
+                <div class="list">
+                    <marquee direction="up" onmouseover="this.stop()" onmouseout="this.start()">
+                        <div class=" item-product">
+                            <img src="~/Content/images/item_1.jpg" />
+                            <a href="#">Giỏ quà Tết cao cấp</a>
+                            <p>100,000 đồng</p>
+                        </div>
+                        <div class="item-product">
+                            <img src="~/Content/images/item_1.jpg" />
+                            <a href="#">Giỏ quà Tết cao cấp</a>
+                            <p>100,000 đồng</p>
+                        </div>
+                        <div class="item-product">
+                            <img src="~/Content/images/item_1.jpg" />
+                            <a href="#">Giỏ quà Tết cao cấp</a>
+                            <p>100,000 đồng</p>
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+            <div class="box">
+                <div class="title">
+                    <h3>Tin tức hot</h3>
+                </div>
+                <div class="list_news">
+                    <div class="item-news">
+                        <img src="~/Content/images/new_1.jpg" />
+                        <div class="title-news">
+                            <a href="#">Quà Công nghệ- xu hướng mới</a>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="right">
+            @RenderBody()
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <!--footer-->
+    <div class="footer">
+        <div class="frament-footer">
+            <h2>Quà tặng online</h2>
+            <address>254A, Nguyễn Đình Chiểu, Q3, TpHCM</address>
+            <p>Tel: 08 2338 246 460</p>
+            <p>Fax: 08 1438 464 4460</p>
+            <p>Email: contact@demo1011.web30s.vn</p>
+        </div>
+    </div>
+
+</body>
+</html>
