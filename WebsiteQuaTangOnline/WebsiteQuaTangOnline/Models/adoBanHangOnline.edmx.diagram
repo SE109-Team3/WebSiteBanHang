@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e81e088940e9445184d3e30c1ca4f23d" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.CT_PHIEUNHAP" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.CTHD" Width="1.5" PointX="8.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.DANGNHAP" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.HOADON" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.LOAISANPHAM" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.PHIEUNHAP" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.SANPHAM" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.sysdiagram" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.TINTUC" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QLBanHangOnlineModel.FK_CT_PHIEUNHAP_PHIEUNHAP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangOnlineModel.FK_CT_PHIEUNHAP_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangOnlineModel.FK_CTHD_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangOnlineModel.FK_CTHD_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangOnlineModel.FK_SANPHAM_LOAISANPHAM" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -43,10 +43,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,6 +126,49 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\adoBanHangOnline.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>adoBanHangOnline.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\adoBanHangOnline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\adoBanHangOnline.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>adoBanHangOnline.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTHD.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_PHIEUNHAP.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DANGNHAP.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOADON.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LOAISANPHAM.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelMethod.cs" />
+    <Compile Include="Models\PHIEUNHAP.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SANPHAM.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TINTUC.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1662,7 +1711,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Upload\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1761,6 +1809,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\UpdateCategory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\adoBanHangOnline.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>adoBanHangOnline.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\adoBanHangOnline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>adoBanHangOnline.edmx</DependentUpon>
+      <LastGenOutput>adoBanHangOnline.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\adoBanHangOnline.edmx.diagram">
+      <DependentUpon>adoBanHangOnline.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\adoBanHangOnline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>adoBanHangOnline.edmx</DependentUpon>
+      <LastGenOutput>adoBanHangOnline.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
