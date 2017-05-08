@@ -33,84 +33,18 @@
             }
         }
         catch { }
-
-        
-        
-        <div class="product-item">
-            <div class="img">
-                <a href="#">
-                    <img src="~/Content/images/item_1.jpg" />
-                </a>
-            </div>
-            <div class="name-product">
-                <a href="#">Giỏ quà Tết cao cấp - K10</a>
-            </div>
-            <div class="price">
-                <p>100,000 đồng</p>
-            </div>
-            <div class="foot">
-                <a href="#" class="button">Đặt Mua</a>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="img">
-                <a href="#">
-                    <img src="~/Content/images/item_1.jpg" />
-                </a>
-            </div>
-            <div class="name-product">
-                <a href="#">Giỏ quà Tết cao cấp - K10</a>
-            </div>
-            <div class="price">
-                <p>100,000 đồng</p>
-            </div>
-            <div class="foot">
-                <a href="#" class="button">Đặt Mua</a>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="img">
-                <a href="#">
-                    <img src="~/Content/images/item_1.jpg" />
-                </a>
-            </div>
-            <div class="name-product">
-                <a href="#">Giỏ quà Tết cao cấp - K10</a>
-            </div>
-            <div class="price">
-                <p>100,000 đồng</p>
-            </div>
-            <div class="foot">
-                <a href="#" class="button">Đặt Mua</a>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="img">
-                <a href="#">
-                    <img src="~/Content/images/item_1.jpg" />
-                </a>
-            </div>
-            <div class="name-product">
-                <a href="#">Giỏ quà Tết cao cấp - K10</a>
-            </div>
-            <div class="price">
-                <p>100,000 đồng</p>
-            </div>
-            <div class="foot">
-                <a href="#" class="button">Đặt Mua</a>
-            </div>
-        </div>
+    
     </div>
     <div style="clear:both"></div>
     <div class="div-page">
         <ul id="pagination-clean">
             @try
-            {
-                int sotrang=ViewBag["sotrang"];
-                int hientai = ViewBag["trangHienTai"];
-                string loaiSP=ViewBag["loaiSP"];
-                if (hientai != 1)
-                {
+			{
+				int sotrang = ViewBag.sotrang;
+				int hientai = ViewBag.trangHienTai;
+				string loaiSP=ViewBag.loaiSP;
+				if (hientai != 1)
+				{
                     <li class="previous-off"><a href="?id=@loaiSP&min=@(hientai-1)">«Previous</a></li>
                 }
                     
