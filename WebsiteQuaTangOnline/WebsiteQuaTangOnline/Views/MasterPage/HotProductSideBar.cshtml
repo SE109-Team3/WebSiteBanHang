@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM>
+
+
+@try{
+    foreach(var Item in Model)
+    {
+        <div class=" item-product">
+            <img src="~/Content/images/item_1.jpg" />
+            <a href="#">Giỏ quà Tết cao cấp</a>
+            <p>100,000 đồng</p>
+        </div>
+    }
+}
+catch { }
+<div class=" item-product">
+    <img src="~/Content/images/item_1.jpg" />
+    <a href="#">Giỏ quà Tết cao cấp</a>
+    <p>100,000 đồng</p>
+</div>
+<div class="item-product">
+    <img src="~/Content/images/item_1.jpg" />
+    <a href="#">Giỏ quà Tết cao cấp</a>
+    <p>100,000 đồng</p>
+</div>
+<div class="item-product">
+    <img src="~/Content/images/item_1.jpg" />
+    <a href="#">Giỏ quà Tết cao cấp</a>
+    <p>100,000 đồng</p>
+</div>

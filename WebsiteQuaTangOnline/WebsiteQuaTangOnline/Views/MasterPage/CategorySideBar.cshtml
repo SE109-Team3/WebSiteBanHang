@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebsiteQuaTangOnline.Models.LOAISANPHAM>
+<div class="box">
+    <div class="title"><h3>Danh Mục Quà Tặng</h3></div>
+
+    @try
+    {
+        foreach(var item in Model)
+        {
+            <div class="item">
+                <a href="/Home/ProductPage/?id=@item.MaLoaiSanPham">@item.TenLoaiSanPham</a>
+            </div>
+        }
+    }
+    catch { }
+
+</div>

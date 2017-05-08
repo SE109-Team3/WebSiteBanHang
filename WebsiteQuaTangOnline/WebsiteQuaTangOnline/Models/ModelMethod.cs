@@ -8,7 +8,7 @@ namespace WebsiteQuaTangOnline.Models
 {
     public class ModelMethod
     {
-
+        static QLBanHangOnlineEntities db = new QLBanHangOnlineEntities();
         /// <summary>
         /// Phương thức mã hóa MD5
         /// </summary>
@@ -32,63 +32,53 @@ namespace WebsiteQuaTangOnline.Models
         #region Các phương thức cho DANGNHAP
         public static void AddAdmin(DANGNHAP taikhoan)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                db.DANGNHAPs.Add(taikhoan);
-                db.SaveChanges();
-            }
+            db.DANGNHAPs.Add(taikhoan);
+            db.SaveChanges();
         }
         public static void UpdateAdmin(DANGNHAP taikhoan)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = db.DANGNHAPs.Where(tk => (tk.TaiKhoang.Equals(taikhoan.TaiKhoang) && (tk.MatKhau.Equals(GetMD5(taikhoan.MatKhau))))).SingleOrDefault();
+            if (data != null)
             {
-                var data = db.DANGNHAPs.Where(tk => (tk.TaiKhoang.Equals(taikhoan.TaiKhoang) && (tk.MatKhau.Equals(GetMD5(taikhoan.MatKhau))))).SingleOrDefault();
-                if (data != null)
-                {
-                    data.MatKhau = taikhoan.MatKhau;
-                }
-                db.SaveChanges();
+                data.MatKhau = taikhoan.MatKhau;
             }
+            db.SaveChanges();
         }
         #endregion
         #region Các phương thức cho LOAISANPHAM
         public static void AddCategory(LOAISANPHAM loaisp)
         {
-            using (QLBanHangOnlineEntities db= new QLBanHangOnlineEntities())
-            {
-                db.LOAISANPHAMs.Add(loaisp);
-                db.SaveChanges();
-            }
+            db.LOAISANPHAMs.Add(loaisp);
+            db.SaveChanges();
         }
         public static void UpdateCategory(LOAISANPHAM loaisp)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = db.LOAISANPHAMs.Where(lsp => lsp.MaLoaiSanPham.Equals(loaisp.MaLoaiSanPham)).Single();
+            if (data != null)
             {
-                var data = db.LOAISANPHAMs.Where(lsp => lsp.MaLoaiSanPham.Equals(loaisp.MaLoaiSanPham)).Single();
-                if(data!=null)
-                {
-                    data.TenLoaiSanPham = loaisp.TenLoaiSanPham;
-                }
-                db.SaveChanges();
+                data.TenLoaiSanPham = loaisp.TenLoaiSanPham;
             }
+            db.SaveChanges();
         }
         public static void DeleteCategory(string Id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = db.LOAISANPHAMs.Where(lsp => lsp.MaLoaiSanPham.Equals(Id)).SingleOrDefault();
+            try
             {
-                var data = db.LOAISANPHAMs.Where(lsp => lsp.MaLoaiSanPham.Equals(Id)).SingleOrDefault();
-                try
+                if (data != null)
                 {
-                    if (data != null)
-                    {
-                        db.LOAISANPHAMs.Remove(data);
-                    }
-                    db.SaveChanges();
+                    db.LOAISANPHAMs.Remove(data);
                 }
-                catch
-                { }
-               
+                db.SaveChanges();
             }
+            catch
+            { }
+        }
+        public static IEnumerable<LOAISANPHAM> LoadCategory()
+        {
+            var data = (from lsp in db.LOAISANPHAMs
+                        select lsp);
+            return data;
         }
         #endregion
         #region các phương thức cho SANPHAM
@@ -98,11 +88,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="sp">Sản phẩm cần thêm mới</param>
         public static void AddProduct(SANPHAM sp)
         {
-            using(QLBanHangOnlineEntities db= new QLBanHangOnlineEntities())
-            {
-                db.SANPHAMs.Add(sp);
-                db.SaveChanges();
-            }
+            db.SANPHAMs.Add(sp);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -111,20 +98,17 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="sp">Sản phẩm cần cập nhật thông thin</param>
         public static void UpdateProduct(SANPHAM sp)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = db.SANPHAMs.Where(sanpham => sanpham.MaSanPham.Equals(sp.MaSanPham)).SingleOrDefault();
+            if (data != null)
             {
-                var data = db.SANPHAMs.Where(sanpham => sanpham.MaSanPham.Equals(sp.MaSanPham)).SingleOrDefault();
-                if(data != null)
-                {
-                    data.TenSanPham = sp.TenSanPham;
-                    data.NhaSanXuat = sp.NhaSanXuat;
-                    data.UrlHinhAnh = sp.UrlHinhAnh;
-                    data.MoTa = sp.MoTa;
-                    data.SoLuong = sp.SoLuong;
-                    data.SoLuotMua = sp.SoLuotMua;
-                }
-                db.SaveChanges();
+                data.TenSanPham = sp.TenSanPham;
+                data.NhaSanXuat = sp.NhaSanXuat;
+                data.UrlHinhAnh = sp.UrlHinhAnh;
+                data.MoTa = sp.MoTa;
+                data.SoLuong = sp.SoLuong;
+                data.SoLuotMua = sp.SoLuotMua;
             }
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -133,15 +117,12 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="id">mã sản phẩm cần xóa</param>
         public static void DeleteProduct(string id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = db.SANPHAMs.Where(sanpham => sanpham.MaSanPham.Equals(id)).SingleOrDefault();
+            if (data != null)
             {
-                var data = db.SANPHAMs.Where(sanpham => sanpham.MaSanPham.Equals(id)).SingleOrDefault();
-                if (data != null)
-                {
-                    db.SANPHAMs.Remove(data);
-                }
-                db.SaveChanges();
+                db.SANPHAMs.Remove(data);
             }
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -151,11 +132,9 @@ namespace WebsiteQuaTangOnline.Models
         public static IEnumerable<SANPHAM> LoadTop8ProductByNew()
         {
             IEnumerable<SANPHAM> data;
-             using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-             {
-                 data=(from sp in db.SANPHAMs orderby sp.MaSanPham select sp);
-             }
-             return data.Take(8);
+            data = (from sp in db.SANPHAMs orderby sp.MaSanPham select sp);
+
+            return data.Take(8);
         }
 
         /// <summary>
@@ -165,16 +144,13 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số lượng bảng gi lấy về</param>
         /// <returns>Danh sách sản phẩm</returns>
-        public static IEnumerable<SANPHAM> LoadProductByCategory(int malsp,int min,int number)
+        public static IEnumerable<SANPHAM> LoadProductByCategory(int malsp, int min, int number)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                var temp = (from sp in db.SANPHAMs where sp.MaLoaiSanPham.Equals(malsp) select sp).ToList();
+            var temp = (from sp in db.SANPHAMs where sp.MaLoaiSanPham.Equals(malsp) select sp).ToList();
 
 
-                var list = temp.Skip(number * (min - 1)).Take(number).ToList();
-                return list;
-            }
+            var list = temp.Skip(number * (min - 1)).Take(number).ToList();
+            return list;
         }
 
         /// <summary>
@@ -183,11 +159,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <returns>danh sách sản phẩm</returns>
         public static IEnumerable<SANPHAM> LoadProductByHot()
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                IEnumerable<SANPHAM> data = (from sp in db.SANPHAMs orderby sp.SoLuotMua select sp);
-                return data.Take(5);
-            }
+            IEnumerable<SANPHAM> data = (from sp in db.SANPHAMs orderby sp.SoLuotMua select sp);
+            return data.Take(5);
         }
 
         /// <summary>
@@ -199,14 +172,11 @@ namespace WebsiteQuaTangOnline.Models
         /// <returns></returns>
         public static IEnumerable<SANPHAM> LoadProduct(int min, int number)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                var temp = (from sp in db.SANPHAMs select sp).ToList();
+            var temp = (from sp in db.SANPHAMs select sp).ToList();
 
 
-                var list = temp.Skip(number * (min - 1)).Take(number).ToList();
-                return list;
-            }
+            var list = temp.Skip(number * (min - 1)).Take(number).ToList();
+            return list;
         }
 
         /// <summary>
@@ -216,14 +186,11 @@ namespace WebsiteQuaTangOnline.Models
         /// <returns>Thông tin sản phẩm</returns>
         public static SANPHAM LoadProductInfo(string ID)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                var data = db.SANPHAMs.Where(sanpham => sanpham.MaSanPham.Equals(ID)).Single();
-                return data;
-            }
+            var data = db.SANPHAMs.Where(sanpham => sanpham.MaSanPham.Equals(ID)).Single();
+            return data;
         }
         #endregion
-        #region phương thức cho TINTUC
+        #region Các phương thức cho TINTUC
         /// <summary>
         /// Phương thức lấy về danh sách tin tức
         /// </summary>
@@ -233,11 +200,8 @@ namespace WebsiteQuaTangOnline.Models
         public static IEnumerable<TINTUC> LoadNews(int min, int number)
         {
             IEnumerable<TINTUC> data;
-            using(QLBanHangOnlineEntities db= new QLBanHangOnlineEntities())
-            {
-                data = (from t in db.TINTUCs
-                        select t);
-            }
+            data = (from t in db.TINTUCs
+                    select t);
             return data.Skip(number * (min - 1)).Take(number).ToList();
         }
         /// <summary>
@@ -247,12 +211,9 @@ namespace WebsiteQuaTangOnline.Models
         public static IEnumerable<TINTUC> LoadTop4News()
         {
             IEnumerable<TINTUC> data;
-            using(QLBanHangOnlineEntities db= new QLBanHangOnlineEntities())
-            {
-                data = (from t in db.TINTUCs
-                        orderby t.MaTinTuc
-                        select t);
-            }
+            data = (from t in db.TINTUCs
+                    orderby t.MaTinTuc
+                    select t);
             return data.Take(4);
         }
 
@@ -264,12 +225,9 @@ namespace WebsiteQuaTangOnline.Models
         public static TINTUC LoadNewsInfo(int id)
         {
             TINTUC data;
-            using(QLBanHangOnlineEntities db= new QLBanHangOnlineEntities())
-            {
-                data = (from t in db.TINTUCs
-                        where t.MaTinTuc.Equals(id)
-                        select t).Single();              
-            }
+            data = (from t in db.TINTUCs
+                    where t.MaTinTuc.Equals(id)
+                    select t).Single();
             return data;
         }
 
@@ -279,11 +237,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="tin">tin tức cần thêm</param>
         public static void AddNews(TINTUC tin)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                db.TINTUCs.Add(tin);
-                db.SaveChanges();
-            }
+            db.TINTUCs.Add(tin);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -293,24 +248,20 @@ namespace WebsiteQuaTangOnline.Models
         public static void UpdateNews(TINTUC tin)
         {
             TINTUC data;
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            data = (from t in db.TINTUCs
+                    where t.MaTinTuc.Equals(tin.MaTinTuc)
+                    select t).Single();
+            if (data != null)
             {
-                data = (from t in db.TINTUCs
-                        where t.MaTinTuc.Equals(tin.MaTinTuc)
-                        select t).Single();
-                if(data != null)
-                {
-                    data.MoTa = tin.MoTa;
-                    data.NgayDang = tin.NgayDang;
-                    data.NgaySua = tin.NgaySua;
-                    data.NoiDung = tin.NoiDung;
-                    data.SoLuotxem = tin.SoLuotxem;
-                    data.TacGia = tin.TacGia;
-                    data.TieuDe = tin.TieuDe;
-                    data.UrlHinhAnh = tin.UrlHinhAnh;
-                    db.SaveChanges();
-                }
-
+                data.MoTa = tin.MoTa;
+                data.NgayDang = tin.NgayDang;
+                data.NgaySua = tin.NgaySua;
+                data.NoiDung = tin.NoiDung;
+                data.SoLuotxem = tin.SoLuotxem;
+                data.TacGia = tin.TacGia;
+                data.TieuDe = tin.TieuDe;
+                data.UrlHinhAnh = tin.UrlHinhAnh;
+                db.SaveChanges();
             }
         }
 
@@ -320,15 +271,12 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="id">mã tin tức cần xóa</param>
         public static void DeleteNews(int id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = db.TINTUCs.Where(tin => tin.MaTinTuc.Equals(id)).Single();
+            if (data != null)
             {
-                var data = db.TINTUCs.Where(tin => tin.MaTinTuc.Equals(id)).Single();
-                if (data != null)
-                {
-                    db.TINTUCs.Remove(data);
-                }
-                db.SaveChanges();
+                db.TINTUCs.Remove(data);
             }
+            db.SaveChanges();
         }
 
         #endregion
@@ -339,11 +287,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="hoadon">Hóa đơn cần thêm</param>
         public static void AddBill(HOADON hoadon)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                db.HOADONs.Add(hoadon);
-                db.SaveChanges();
-            }
+            db.HOADONs.Add(hoadon);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -352,22 +297,19 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="hoadon">Hóa đơn cần sửa</param>
         public static void UpdateBill(HOADON hoadon)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = (from hd in db.HOADONs
+                        where hd.MaHoaDon == hoadon.MaHoaDon
+                        select hd).Single();
+            if (data != null)
             {
-                var data = (from hd in db.HOADONs
-                            where hd.MaHoaDon == hoadon.MaHoaDon
-                            select hd).Single();
-                if(data != null)
-                {
-                    data.NoiDung = hoadon.NoiDung;
-                    data.SoDienThoai = hoadon.SoDienThoai;
-                    data.TenKhachHang = hoadon.TenKhachHang;
-                    data.TrangThai = hoadon.TrangThai;
-                    data.DiaChi = hoadon.DiaChi;
-                    data.Email = hoadon.Email;
-                    data.NgayLap = hoadon.NgayLap;
-                    db.SaveChanges();
-                }
+                data.NoiDung = hoadon.NoiDung;
+                data.SoDienThoai = hoadon.SoDienThoai;
+                data.TenKhachHang = hoadon.TenKhachHang;
+                data.TrangThai = hoadon.TrangThai;
+                data.DiaChi = hoadon.DiaChi;
+                data.Email = hoadon.Email;
+                data.NgayLap = hoadon.NgayLap;
+                db.SaveChanges();
             }
         }
 
@@ -379,24 +321,21 @@ namespace WebsiteQuaTangOnline.Models
         public static int IntoMoney(int id)
         {
             int tongtien = 0;
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            // lấy ra hóa đơn
+            var hoadon = (from hd in db.HOADONs
+                          where hd.MaHoaDon == id
+                          select hd).Single();
+            if (hoadon != null)
             {
-                // lấy ra hóa đơn
-                var hoadon = (from hd in db.HOADONs
-                            where hd.MaHoaDon == id
-                            select hd).Single();
-                if (hoadon != null)
+                // lấy về danh sách chi tiết hóa đơn
+                var cthd = (from ct in db.CTHDs
+                            where ct.MaHoaDon == id
+                            select ct);
+                foreach (var ct in cthd)
                 {
-                    // lấy về danh sách chi tiết hóa đơn
-                    var cthd = (from ct in db.CTHDs
-                                where ct.MaHoaDon == id
-                                select ct);                 
-                    foreach(var ct in cthd )
-                    {
-                        tongtien += ct.ThanhTien;
-                    }
-
+                    tongtien += ct.ThanhTien;
                 }
+
             }
             return tongtien;
         }
@@ -408,16 +347,13 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="Id">mã hóa đơn cần sửa trạng thái</param>
         public static void UpdateBillStatus(int Id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = (from hd in db.HOADONs
+                        where hd.MaHoaDon.Equals(Id)
+                        select hd).Single();
+            if (data != null)
             {
-                var data = (from hd in db.HOADONs
-                            where hd.MaHoaDon.Equals(Id)
-                            select hd).Single();
-                if (data != null)
-                {
-                    data.TrangThai = 1;
-                    db.SaveChanges();
-                }
+                data.TrangThai = 1;
+                db.SaveChanges();
             }
         }
 
@@ -427,25 +363,22 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="Id">Mã hóa đơn cần xóa</param>
         public static void delete(int Id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = (from hd in db.HOADONs
+                        where hd.MaHoaDon.Equals(Id)
+                        select hd).Single();
+            if (data != null)
             {
-                var data = (from hd in db.HOADONs
-                            where hd.MaHoaDon.Equals(Id)
-                            select hd).Single();
-                if (data != null)
+                //xóa tất cả các cthd liên quan
+                var cthd = (from ct in db.CTHDs
+                            where ct.MaHoaDon.Equals(Id)
+                            select ct);
+                foreach (var ct in cthd)
                 {
-                    //xóa tất cả các cthd liên quan
-                    var cthd = (from ct in db.CTHDs
-                                where ct.MaHoaDon.Equals(Id)
-                                select ct); 
-                    foreach(var ct in cthd)
-                    {
-                        DeleteDetailBill(ct.MaChiTiet);
-                    }
-                    // xóa chi tiết hóa đơn
-                    db.HOADONs.Remove(data);
-                    db.SaveChanges();
+                    DeleteDetailBill(ct.MaChiTiet);
                 }
+                // xóa chi tiết hóa đơn
+                db.HOADONs.Remove(data);
+                db.SaveChanges();
             }
         }
 
@@ -458,13 +391,10 @@ namespace WebsiteQuaTangOnline.Models
         public IEnumerable<HOADON> LoadBill(int min, int number)
         {
             IEnumerable<HOADON> data;
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                 data = (from hd in db.HOADONs
-                            where hd.TrangThai==0
-                            select hd);
-                 return data.Skip(number * (min - 1)).Take(number);
-            }
+            data = (from hd in db.HOADONs
+                    where hd.TrangThai == 0
+                    select hd);
+            return data.Skip(number * (min - 1)).Take(number);
         }
         #endregion
         #region Các phương thức cho CTHD
@@ -475,11 +405,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="ct">chi tiết hóa đơn cần thêm</param>
         public static void AddDetailBill(CTHD ct)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                db.CTHDs.Add(ct);
-                db.SaveChanges();
-            }
+            db.CTHDs.Add(ct);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -488,19 +415,16 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="ct">Chi tiết hóa đơn cần cập nhật</param>
         public static void UpdateDetailBill(CTHD ct)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = (from cthd in db.CTHDs
+                        where cthd.MaChiTiet == ct.MaChiTiet
+                        select cthd).Single();
+            if (data != null)
             {
-                var data = (from cthd in db.CTHDs
-                            where cthd.MaChiTiet == ct.MaChiTiet
-                            select cthd).Single();
-                if(data !=null)
-                {
-                    data.MaHoaDon = ct.MaHoaDon;
-                    data.MaSanPham = ct.MaSanPham;
-                    data.SoLuong = ct.SoLuong;
-                    data.ThanhTien = ct.ThanhTien;
-                    db.SaveChanges();
-                }
+                data.MaHoaDon = ct.MaHoaDon;
+                data.MaSanPham = ct.MaSanPham;
+                data.SoLuong = ct.SoLuong;
+                data.ThanhTien = ct.ThanhTien;
+                db.SaveChanges();
             }
         }
 
@@ -510,16 +434,13 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="id">Mã chi tiết hóa đơn cần xóa</param>
         public static void DeleteDetailBill(int id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            var data = (from cthd in db.CTHDs
+                        where cthd.MaChiTiet == id
+                        select cthd).Single();
+            if (data != null)
             {
-                var data = (from cthd in db.CTHDs
-                            where cthd.MaChiTiet == id
-                            select cthd).Single();
-                if (data != null)
-                {
-                    db.CTHDs.Remove(data);
-                    db.SaveChanges();
-                }
+                db.CTHDs.Remove(data);
+                db.SaveChanges();
             }
         }
 
@@ -530,13 +451,10 @@ namespace WebsiteQuaTangOnline.Models
         /// <returns>danh sách chi tiết hóa đơn</returns>
         public static IEnumerable<CTHD> LoadDetailBill(int Id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                var data = (from cthd in db.CTHDs
-                            where cthd.MaHoaDon == Id
-                            select cthd);
-                return data;
-            }
+            var data = (from cthd in db.CTHDs
+                        where cthd.MaHoaDon == Id
+                        select cthd);
+            return data;
         }
         #endregion
         #region Các phương thức cho PHIEUNHAP
@@ -547,11 +465,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="phieunhap">phiếu nhập cần thêm</param>
         public static void AddImport(PHIEUNHAP phieunhap)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                db.PHIEUNHAPs.Add(phieunhap);
-                db.SaveChanges();
-            }
+            db.PHIEUNHAPs.Add(phieunhap);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -560,18 +475,15 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="phieunhap">Phiếu nhập cần cập nhập</param>
         public static void UpdateImport(PHIEUNHAP phieunhap)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            PHIEUNHAP data = (from pn in db.PHIEUNHAPs
+                              where pn.MaPhieuNhap == phieunhap.MaPhieuNhap
+                              select pn).Single();
+            if (data != null)
             {
-                PHIEUNHAP data = (from pn in db.PHIEUNHAPs
-                                  where pn.MaPhieuNhap == phieunhap.MaPhieuNhap
-                                  select pn).Single();
-                if(data != null)
-                {
-                    data.NgayNhap = phieunhap.NgayNhap;
-                    data.NhaSanXuat = phieunhap.NhaSanXuat;
-                    data.TongTien = phieunhap.TongTien;
-                    db.SaveChanges();
-                }
+                data.NgayNhap = phieunhap.NgayNhap;
+                data.NhaSanXuat = phieunhap.NhaSanXuat;
+                data.TongTien = phieunhap.TongTien;
+                db.SaveChanges();
             }
         }
 
@@ -581,16 +493,13 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="id">id phiếu nhập cần xóa</param>
         public static void DeleteImport(int id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            PHIEUNHAP data = (from pn in db.PHIEUNHAPs
+                              where pn.MaPhieuNhap == id
+                              select pn).Single();
+            if (data != null)
             {
-                PHIEUNHAP data = (from pn in db.PHIEUNHAPs
-                                  where pn.MaPhieuNhap == id
-                                  select pn).Single();
-                if(data != null)
-                {
-                    db.PHIEUNHAPs.Remove(data);
-                    db.SaveChanges();
-                }
+                db.PHIEUNHAPs.Remove(data);
+                db.SaveChanges();
             }
         }
 
@@ -603,11 +512,8 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="ct_phieunhap">chi tiết phiếu nhập</param>
         public static void AddDetailImport(CT_PHIEUNHAP ct_phieunhap)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
-            {
-                db.CT_PHIEUNHAP.Add(ct_phieunhap);
-                db.SaveChanges();
-            }
+            db.CT_PHIEUNHAP.Add(ct_phieunhap);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -616,20 +522,17 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="ct_phieunhap">ctpn cần cập nhật</param>
         public static void UpdateDetailImport(CT_PHIEUNHAP ct_phieunhap)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            CT_PHIEUNHAP data = (from ct in db.CT_PHIEUNHAP
+                                 where ct.MaChiTiet == ct_phieunhap.MaChiTiet
+                                 select ct).Single();
+            if (data != null)
             {
-                CT_PHIEUNHAP data = (from ct in db.CT_PHIEUNHAP
-                                     where ct.MaChiTiet == ct_phieunhap.MaChiTiet
-                                     select ct).Single();
-                if(data !=null)
-                {
-                    data.MaPhieuNhap = ct_phieunhap.MaPhieuNhap;
-                    data.MaSanPham = ct_phieunhap.MaSanPham;
-                    data.SoLuong = ct_phieunhap.SoLuong;
-                    data.ThanhTien = ct_phieunhap.ThanhTien;
-                    data.DonGia = ct_phieunhap.DonGia;
-                    db.SaveChanges();
-                }
+                data.MaPhieuNhap = ct_phieunhap.MaPhieuNhap;
+                data.MaSanPham = ct_phieunhap.MaSanPham;
+                data.SoLuong = ct_phieunhap.SoLuong;
+                data.ThanhTien = ct_phieunhap.ThanhTien;
+                data.DonGia = ct_phieunhap.DonGia;
+                db.SaveChanges();
             }
         }
 
@@ -639,16 +542,13 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="Id">Mã chi tiết phiếu nhập</param>
         public static void DeleteDetailImport(int Id)
         {
-            using (QLBanHangOnlineEntities db = new QLBanHangOnlineEntities())
+            CT_PHIEUNHAP data = (from ct in db.CT_PHIEUNHAP
+                                 where ct.MaChiTiet == Id
+                                 select ct).Single();
+            if (data != null)
             {
-                CT_PHIEUNHAP data = (from ct in db.CT_PHIEUNHAP
-                                     where ct.MaChiTiet == Id
-                                     select ct).Single();
-                if (data != null)
-                {
-                    db.CT_PHIEUNHAP.Remove(data);
-                    db.SaveChanges();
-                }
+                db.CT_PHIEUNHAP.Remove(data);
+                db.SaveChanges();
             }
         }
         #endregion
