@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace WebsiteQuaTangOnline.Controllers
 {
@@ -15,10 +16,28 @@ namespace WebsiteQuaTangOnline.Controllers
         {           
             return View();
         }
-        public ActionResult ProductPage()
+
+        [HttpGet]
+        public ActionResult ProductPage(string id="",int min=1)
         {
-            return View();
+            try
+            {
+                // lấy ra danh sách sản phẩm
+                IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM> listSanPham = WebsiteQuaTangOnline.Models.ModelMethod.LoadProductByCategory(id, min, 10);
+                // lấy ra số trang
+                ViewBag.sotrang = WebsiteQuaTangOnline.Models.ModelMethod.CountProduct(id)/10+1;
+                // lưu loại sản phẩm 
+                ViewBag.loaiSP = id;
+                //lấy ra trang hiện tại
+                ViewBag.trangHienTai = min;
+                return View(listSanPham);
+            }
+            catch
+            {
+                return View();
+            }
         }
+
         public ActionResult NewsPage()
         {
             return View();

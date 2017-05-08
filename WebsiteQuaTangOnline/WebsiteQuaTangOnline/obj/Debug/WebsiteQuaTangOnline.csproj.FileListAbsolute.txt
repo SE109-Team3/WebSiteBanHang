@@ -68,3 +68,7 @@ E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQua
 E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.csprojResolveAssemblyReference.cache
 E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.dll
 E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.pdb
+E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\PagedList.dll
+E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\PagedList.Mvc.dll
+E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\PagedList.xml
+E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\PagedList.Mvc.xml

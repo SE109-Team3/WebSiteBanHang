@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebsiteQuaTangOnline.Models.TINTUC>
+
+@try
+{
+    foreach(var item in Model)
+    {
+        <div class="item-news">
+            <img src="@item.UrlHinhAnh" />
+            <div class="title-news">
+                <a href="/Home/InfoNews?id=@item.MaTinTuc">@item.TieuDe</a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    }
+}
+catch { }
+<div class="item-news">
+    <img src="~/Content/images/new_1.jpg" />
+    <div class="title-news">
+        <a href="#">Quà Công nghệ- xu hướng mới</a>
+    </div>
+    <div style="clear:both"></div>
+</div>

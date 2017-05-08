@@ -37,5 +37,19 @@ namespace WebsiteQuaTangOnline.Controllers
             }
 
         }
+        public ActionResult NewsSideBar()
+        {
+            try
+            {
+                IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> lstTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadTop4News();
+                return View(lstTinTuc);
+
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
     }
 }

@@ -144,13 +144,34 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số lượng bảng gi lấy về</param>
         /// <returns>Danh sách sản phẩm</returns>
-        public static IEnumerable<SANPHAM> LoadProductByCategory(int malsp, int min, int number)
+        public static IEnumerable<SANPHAM> LoadProductByCategory(string malsp,int min=1, int number=10)
         {
-            var temp = (from sp in db.SANPHAMs where sp.MaLoaiSanPham.Equals(malsp) select sp).ToList();
-
-
-            var list = temp.Skip(number * (min - 1)).Take(number).ToList();
+            IEnumerable<SANPHAM> temp;
+            
+            if(malsp=="")
+            {
+                temp = (from sp in db.SANPHAMs select sp).ToList();
+            }
+            else
+            {
+                temp = (from sp in db.SANPHAMs where sp.MaLoaiSanPham.Equals(malsp) select sp).ToList();
+            }
+            var list=temp.Skip(number * (min - 1)).Take(number).ToList();
             return list;
+        }
+
+        public static int CountProduct(string malsp)
+        {
+            IEnumerable<SANPHAM> temp;
+            if (malsp == "")
+            {
+                temp = (from sp in db.SANPHAMs select sp).ToList();
+            }
+            else
+            {
+                temp = (from sp in db.SANPHAMs where sp.MaLoaiSanPham.Equals(malsp) select sp).ToList();
+            }
+            return temp.Count();
         }
 
         /// <summary>
@@ -170,10 +191,9 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số lượng bảng ghi cần lấy</param>
         /// <returns></returns>
-        public static IEnumerable<SANPHAM> LoadProduct(int min, int number)
+        public static IEnumerable<SANPHAM> LoadProduct(int min=1, int number=10)
         {
             var temp = (from sp in db.SANPHAMs select sp).ToList();
-
 
             var list = temp.Skip(number * (min - 1)).Take(number).ToList();
             return list;
