@@ -48,6 +48,17 @@
           <Property Name="TrangThai" Type="int" Nullable="false" />
           <Property Name="NgayLap" Type="datetime" />
         </EntityType>
+        <EntityType Name="LIENHE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="70" />
+          <Property Name="DiaChi" Type="ntext" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="NoiDung" Type="ntext" />
+        </EntityType>
         <EntityType Name="LOAISANPHAM">
           <Key>
             <PropertyRef Name="MaLoaiSanPham" />
@@ -167,6 +178,7 @@
           <EntitySet Name="CTHD" EntityType="Self.CTHD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANGNHAP" EntityType="Self.DANGNHAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIENHE" EntityType="Self.LIENHE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAISANPHAM" EntityType="Self.LOAISANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
@@ -394,7 +406,19 @@
             <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
+          <EntitySet Name="LIENHEs" EntityType="QLBanHangOnlineModel.LIENHE" />
         </EntityContainer>
+        <EntityType Name="LIENHE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -504,6 +528,18 @@
                 <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
                 <ScalarProperty Name="SoLuotxem" ColumnName="SoLuotxem" />
                 <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIENHEs">
+            <EntityTypeMapping TypeName="QLBanHangOnlineModel.LIENHE">
+              <MappingFragment StoreEntitySet="LIENHE">
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

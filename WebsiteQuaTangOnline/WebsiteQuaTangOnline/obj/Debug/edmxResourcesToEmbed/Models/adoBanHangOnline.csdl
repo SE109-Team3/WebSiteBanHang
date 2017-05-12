@@ -40,12 +40,13 @@
     </Key>
     <Property Name="MaHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="TrangThai" Type="Int32" Nullable="false" />
     <NavigationProperty Name="CTHDs" Relationship="Self.FK_CTHD_HOADON" FromRole="HOADON" ToRole="CTHD" />
+    <Property Name="NgayLap" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="LOAISANPHAM">
     <Key>
@@ -196,5 +197,17 @@
       <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
       <End Role="SANPHAM" EntitySet="SANPHAMs" />
     </AssociationSet>
+    <EntitySet Name="LIENHEs" EntityType="QLBanHangOnlineModel.LIENHE" />
   </EntityContainer>
+  <EntityType Name="LIENHE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

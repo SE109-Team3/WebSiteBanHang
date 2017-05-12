@@ -34,5 +34,6 @@ namespace WebsiteQuaTangOnline.Models
         public DbSet<SANPHAM> SANPHAMs { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TINTUC> TINTUCs { get; set; }
+        public DbSet<LIENHE> LIENHEs { get; set; }
     }
 }

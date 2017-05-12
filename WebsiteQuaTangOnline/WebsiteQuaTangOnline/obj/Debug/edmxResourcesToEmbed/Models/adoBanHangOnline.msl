@@ -37,6 +37,7 @@
     <EntitySetMapping Name="HOADONs">
       <EntityTypeMapping TypeName="QLBanHangOnlineModel.HOADON">
         <MappingFragment StoreEntitySet="HOADON">
+          <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
           <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
           <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
           <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
@@ -103,6 +104,18 @@
           <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
           <ScalarProperty Name="SoLuotxem" ColumnName="SoLuotxem" />
           <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIENHEs">
+      <EntityTypeMapping TypeName="QLBanHangOnlineModel.LIENHE">
+        <MappingFragment StoreEntitySet="LIENHE">
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

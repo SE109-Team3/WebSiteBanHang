@@ -421,13 +421,21 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số bảng ghi trong 1 trang</param>
         /// <returns>Danh sách hóa đơn</returns>
-        public IEnumerable<HOADON> LoadBill(int min, int number)
+        public static IEnumerable<HOADON> LoadBill(int min, int number)
         {
             IEnumerable<HOADON> data;
             data = (from hd in db.HOADONs
                     where hd.TrangThai == 0
                     select hd);
             return data.Skip(number * (min - 1)).Take(number);
+        }
+
+        public static int LoadIdBill()
+        {
+            var data = (from hd in db.HOADONs
+                    orderby hd.MaHoaDon
+                    select hd.MaHoaDon).Single();
+            return data;
         }
         #endregion
         #region Các phương thức cho CTHD
@@ -583,6 +591,13 @@ namespace WebsiteQuaTangOnline.Models
                 db.CT_PHIEUNHAP.Remove(data);
                 db.SaveChanges();
             }
+        }
+        #endregion
+        #region Các phuong thuc cho LIENHE
+        public static void AddContact(LIENHE lh)
+        {
+            db.LIENHEs.Add(lh);
+            db.SaveChanges();
         }
         #endregion
     }

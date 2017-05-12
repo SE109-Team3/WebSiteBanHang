@@ -16,13 +16,13 @@
     @using (Html.BeginForm("Contact", "Home", FormMethod.Post)){
     <div class="form-contact">
         <div class="content-left">
-            <input id="hoten" type="text" placeholder="Họ tên" />
-            <input id="diachi" type="text" placeholder="Địa chỉ" />
-            <input id="sdt" type="tel" placeholder="Số điện thoại" />
-            <input id="email" type="email" placeholder="Email" />
+            <input id="hoten" name="HoTen" type="text" placeholder="Họ tên" />
+            <input id="diachi" name="DiaChi" type="text" placeholder="Địa chỉ" />
+            <input id="sdt" name="SDT" type="tel" placeholder="Số điện thoại" />
+            <input id="email" name="Email" type="email" placeholder="Email" />
         </div>
         <div class="content-right">
-            <textarea id="noidung" placeholder="Nội dung" cols="40" rows="9"></textarea>
+            <textarea id="noidung" name="NoiDung" placeholder="Nội dung" cols="40" rows="9"></textarea>
         </div>
         <div style="clear:both"></div>
         <div class="foot-contact">

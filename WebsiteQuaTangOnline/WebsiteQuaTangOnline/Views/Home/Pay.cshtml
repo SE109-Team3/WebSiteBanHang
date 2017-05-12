@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebsiteQuaTangOnline.Models.GIOHANG
+@{
     ViewBag.Title = "Pay";
     Layout = "~/Views/MasterPage/MasterPage.cshtml";
 }
@@ -12,27 +13,27 @@
         <table class="pay-table">
             <tr>
                 <td>Họ Tên</td>
-                <td><input type="text" id="tenkhach" /></td>
+                <td><input type="text"  name="TenKhachHang" /></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" id="tenkhach" /></td>
+                <td><input type="text"  name="Email" /></td>
             </tr>
             <tr>
-                <td>Đại chỉ</td>
-                <td><input type="text" id="tenkhach" /></td>
+                <td>Địa chỉ</td>
+                <td><input type="text" name="DiaChi" /></td>
             </tr>
             <tr>
                 <td>Số điện thoại</td>
-                <td><input type="text" id="tenkhach" /></td>
+                <td><input type="text" name="SoDienThoai"/></td>
             </tr>
             <tr>
                 <td>Fax</td>
-                <td><input type="text" id="tenkhach" /></td>
+                <td><input type="text" name="Fax"/></td>
             </tr>
             <tr>
                 <td>Nội dung</td>
-                <td><input type="text" id="tenkhach" /></td>
+                <td><input type="text" name="NoiDung" /></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -43,12 +44,19 @@
                             <th width="10%">Đơn giá</th>
                             <th width="15%">Thành tiền</th>
                         </tr>
-                        <tr>
-                            <td class="pro-info">asdasdasdasd</td>
-                            <td>1</td>
-                            <td>200,000</td>
-                            <td>200,000</td>
-                        </tr>
+                        @try
+                        {
+                            foreach( var item in Model.ListProduct)
+                            {
+                                <tr>
+                                    <td class="pro-info">@item.TenSanPham</td>
+                                    <td>@item.SoLuong</td>
+                                    <td>@item.DonGia</td>
+                                    <td>@(item.DonGia*item.SoLuong)</td>
+                                </tr>
+                            }
+                        }
+                        catch { }
                     </table>
                 </td>
             </tr>

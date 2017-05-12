@@ -47,6 +47,12 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Contact(WebsiteQuaTangOnline.Models.LIENHE lienhe)
+        {
+            WebsiteQuaTangOnline.Models.ModelMethod.AddContact(lienhe);
+            return RedirectToAction("Index");
+        }
         public ActionResult InfoNews()
         {
             return View();
@@ -58,6 +64,8 @@ namespace WebsiteQuaTangOnline.Controllers
                // lấy ra sản phẩm có mã =id
                 WebsiteQuaTangOnline.Models.SANPHAM sp = WebsiteQuaTangOnline.Models.ModelMethod.LoadProductInfo(id);
                 ViewBag.loaiSP = sp.MaLoaiSanPham;
+                // lấy danh sách sản phẩm liên quan
+                ViewData["SanPhamLienQuan"] = WebsiteQuaTangOnline.Models.ModelMethod.LoadTop6ProductByCategory(sp.MaLoaiSanPham);
                 return View(sp);
             }
             catch
@@ -114,8 +122,36 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult Pay()
         {
+            GIOHANG gio = (GIOHANG)Session["Gio"];
+            return View(gio);
+        }
+        [HttpPost]
+        public ActionResult Pay(WebsiteQuaTangOnline.Models.HOADON hoadon)
+        {
+            // thêm hóa đơn
+            hoadon.NgayLap = new DateTime();
+            hoadon.NgayLap = DateTime.Today;
+            hoadon.TrangThai = 0;
+            WebsiteQuaTangOnline.Models.ModelMethod.AddBill(hoadon);
+            // lấy danh sách giỏ hàng
+            GIOHANG gio= (GIOHANG)Session["Gio"];
+            // thêm chi tiết hóa đơn
+            foreach(var item in gio.ListProduct)
+            {
+                // tạo chi tiết hóa đơn
+                CTHD ct = new CTHD();
+                ct.MaHoaDon = ModelMethod.LoadIdBill();
+                ct.MaSanPham = item.MaSanPham;
+                ct.SoLuong = item.SoLuong;
+                ct.ThanhTien = item.SoLuong * item.DonGia;
+                ModelMethod.AddDetailBill(ct);
+                
+            }
+            return RedirectToAction("PaySuccess");
+        }
+        public ActionResult PaySuccess()
+        {
             return View();
         }
-
     }
 }

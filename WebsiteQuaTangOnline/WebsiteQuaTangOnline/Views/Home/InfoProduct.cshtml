@@ -35,7 +35,36 @@
         <div class="facebook-comment">
             <!--lugin facebook cmt-->
         </div>       
- 
-        <div style="clear:both"></div>
+        <div class="info-related">
+            <h3>Sản phẩm liên quan</h3>
+        </div>
+        <div class="list-product">
+            @try
+            {
+                IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM> listProductRelated = (IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM>)(ViewData["SanPhamLienQuan"]);
+                foreach(var item in listProductRelated)
+                {
+                    <div class="product-item">
+                        <div class="img">
+                            <a href="/Home/InfoProduct/?id=@item.MaSanPham">
+                                <img src="@item.UrlHinhAnh" />
+                            </a>
+                        </div>
+                        <div class="name-product">
+                            <a href="/Home/InfoProduct/?id=@item.MaSanPham">@item.TenSanPham</a>
+                        </div>
+                        <div class="price">
+                            <p>@item.DonGia.ToString("#,###") VNĐ</p>
+                        </div>
+                        <div class="foot">
+                            <a href="/Home/InfoProduct/?id=@item.MaSanPham" class="button">Đặt Mua</a>
+                        </div>
+                    </div>
+                }
+            }
+            catch { }
+            
+            <div style="clear:both"></div>
+        </div>
     </div>
 </div>

@@ -162,6 +162,9 @@
     <Compile Include="Models\HOADON.cs">
       <DependentUpon>adoBanHangOnline.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LIENHE.cs">
+      <DependentUpon>adoBanHangOnline.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LOAISANPHAM.cs">
       <DependentUpon>adoBanHangOnline.tt</DependentUpon>
     </Compile>
@@ -2650,6 +2653,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\PaySuccess.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

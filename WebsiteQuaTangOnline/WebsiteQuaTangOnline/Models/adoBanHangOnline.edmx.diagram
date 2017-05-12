@@ -19,6 +19,7 @@
         <AssociationConnector Association="QLBanHangOnlineModel.FK_CTHD_HOADON" ManuallyRouted="false" />
         <AssociationConnector Association="QLBanHangOnlineModel.FK_CTHD_SANPHAM" ManuallyRouted="false" />
         <AssociationConnector Association="QLBanHangOnlineModel.FK_SANPHAM_LOAISANPHAM" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBanHangOnlineModel.LIENHE" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
