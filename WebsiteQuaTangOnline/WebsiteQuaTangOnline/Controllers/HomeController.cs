@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using WebsiteQuaTangOnline.Models;
 
 namespace WebsiteQuaTangOnline.Controllers
 {
@@ -50,13 +51,66 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult InfoProduct()
+        public ActionResult InfoProduct(string id)
         {
-            return View();
+            try
+            {
+               // lấy ra sản phẩm có mã =id
+                WebsiteQuaTangOnline.Models.SANPHAM sp = WebsiteQuaTangOnline.Models.ModelMethod.LoadProductInfo(id);
+                ViewBag.loaiSP = sp.MaLoaiSanPham;
+                return View(sp);
+            }
+            catch
+            {
+                return View();
+            }
         }
+       
         public ActionResult Cart()
         {
-            return View();
+            WebsiteQuaTangOnline.Models.GIOHANG Gio = (WebsiteQuaTangOnline.Models.GIOHANG)Session["Gio"];
+            return View(Gio);
+        }
+        public ActionResult AddProduct(string id)
+        {
+            GIOHANG gio = (GIOHANG)Session["Gio"];
+            if(gio==null)
+            {
+                gio = new GIOHANG();
+            }
+            try
+            {
+                SANPHAM sp = new SANPHAM();
+                sp = ModelMethod.LoadProductInfo(id);
+                sp.SoLuong = 1;
+                gio.Add(sp);
+            }
+            catch { }
+            Session["Gio"] = gio;
+            return RedirectToAction("Cart");
+        }
+        public ActionResult DeleteProduct(string id)
+        {
+            GIOHANG gio = (GIOHANG)Session["Gio"];
+            try
+            {
+                gio.Delete(id);
+            }
+            catch { }
+            Session["Gio"] = gio;
+            return RedirectToAction("Cart");
+        }
+
+        public ActionResult UpdateProduct(string id,int soluong)
+        {
+            GIOHANG gio = (GIOHANG)Session["Gio"];
+            try
+            {
+                gio.Update(id,soluong);
+            }
+            catch { }
+            Session["Gio"] = gio;
+            return RedirectToAction("Cart");
         }
         public ActionResult Pay()
         {

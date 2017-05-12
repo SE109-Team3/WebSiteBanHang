@@ -159,7 +159,20 @@ namespace WebsiteQuaTangOnline.Models
             var list=temp.Skip(number * (min - 1)).Take(number).ToList();
             return list;
         }
+        public static IEnumerable<SANPHAM> LoadTop6ProductByCategory(string malsp)
+        {
+            IEnumerable<SANPHAM> temp;
 
+            if (malsp == "")
+            {
+                temp = (from sp in db.SANPHAMs select sp).ToList();
+            }
+            else
+            {
+                temp = (from sp in db.SANPHAMs where sp.MaLoaiSanPham.Equals(malsp) select sp).ToList();
+            }  
+            return temp.Take(6);
+        }
         public static int CountProduct(string malsp)
         {
             IEnumerable<SANPHAM> temp;

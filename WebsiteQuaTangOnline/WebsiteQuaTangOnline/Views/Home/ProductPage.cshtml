@@ -24,10 +24,10 @@
                         <a href="/Home/InfoProduct/?id=@item.MaSanPham">@item.TenSanPham</a>
                     </div>
                     <div class="price">
-                        <p>@item.DonGia</p>
+                        <p>@item.DonGia.ToString("#,###") VNĐ</p>
                     </div>
                     <div class="foot">
-                        <a href="#" class="button">Đặt Mua</a>
+                        <a href="/Home/AddProduct/?id=@item.MaSanPham" class="button">Đặt Mua</a>
                     </div>
                 </div>
             }

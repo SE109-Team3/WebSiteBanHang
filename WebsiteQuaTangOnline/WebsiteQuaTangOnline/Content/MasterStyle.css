@@ -308,9 +308,10 @@
         }
 
     .top .info-pro {
+        margin-left:5px;
         float: left;
         line-height: 20px;
-        width: 70%;
+        width: 69%;
     }
 
         .top .info-pro p {

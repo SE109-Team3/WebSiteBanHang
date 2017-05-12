@@ -5,25 +5,10 @@
     foreach(var Item in Model)
     {
         <div class=" item-product">
-            <img src="~/Content/images/item_1.jpg" />
-            <a href="#">Giỏ quà Tết cao cấp</a>
-            <p>100,000 đồng</p>
+            <img src="@Item.UrlHinhAnh" />
+            <a href="/Home/InfoProduct/?id=@Item.MaSanPham">@Item.TenSanPham</a>
+            <p>@Item.DonGia.ToString("#,###") VNĐ</p>
         </div>
     }
 }
 catch { }
-<div class=" item-product">
-    <img src="~/Content/images/item_1.jpg" />
-    <a href="#">Giỏ quà Tết cao cấp</a>
-    <p>100,000 đồng</p>
-</div>
-<div class="item-product">
-    <img src="~/Content/images/item_1.jpg" />
-    <a href="#">Giỏ quà Tết cao cấp</a>
-    <p>100,000 đồng</p>
-</div>
-<div class="item-product">
-    <img src="~/Content/images/item_1.jpg" />
-    <a href="#">Giỏ quà Tết cao cấp</a>
-    <p>100,000 đồng</p>
-</div>
