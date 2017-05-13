@@ -230,7 +230,7 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số lượng bảng ghi 1 trang</param>
         /// <returns>danh sách tin tức</returns>
-        public static IEnumerable<TINTUC> LoadNews(int min, int number)
+        public static IEnumerable<TINTUC> LoadNews(int min=1, int number=4)
         {
             IEnumerable<TINTUC> data;
             data = (from t in db.TINTUCs

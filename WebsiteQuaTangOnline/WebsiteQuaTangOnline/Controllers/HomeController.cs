@@ -14,8 +14,25 @@ namespace WebsiteQuaTangOnline.Controllers
         // GET: /Home/
 
         public ActionResult Index()
-        {           
-            return View();
+        {
+            try
+            {
+                // lấy ra danh sách sản phẩm
+                IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM> listSanPham = WebsiteQuaTangOnline.Models.ModelMethod.LoadTop8ProductByNew();
+                IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> listTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadTop4News();
+
+                var viewModel = new IndexViewModel
+                {
+                    SANPHAMs = listSanPham,
+                    TINTUCs = listTinTuc
+                };
+
+                return View(viewModel);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -41,7 +58,16 @@ namespace WebsiteQuaTangOnline.Controllers
 
         public ActionResult NewsPage()
         {
-            return View();
+            try
+            {
+                // lấy ra danh sách tin tức
+                IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> listTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadNews(1, 4);
+                return View(listTinTuc);
+            }
+            catch
+            {
+                return View();
+            }
         }
         public ActionResult Contact()
         {
@@ -53,9 +79,20 @@ namespace WebsiteQuaTangOnline.Controllers
             WebsiteQuaTangOnline.Models.ModelMethod.AddContact(lienhe);
             return RedirectToAction("Index");
         }
-        public ActionResult InfoNews()
+        public ActionResult InfoNews(int id)
         {
-            return View();
+            try
+            {
+                // lấy ra tin tức có mã = id
+                WebsiteQuaTangOnline.Models.TINTUC tt = WebsiteQuaTangOnline.Models.ModelMethod.LoadNewsInfo(id);
+                // lấy danh sách tin tức khác
+                //ViewData["SanPhamLienQuan"] = WebsiteQuaTangOnline.Models.ModelMethod.LoadTop4News();
+                return View(tt);
+            }
+            catch
+            {
+                return View();
+            }
         }
         public ActionResult InfoProduct(string id)
         {
