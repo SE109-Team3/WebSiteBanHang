@@ -56,12 +56,12 @@ namespace WebsiteQuaTangOnline.Controllers
             }
         }
 
-        public ActionResult NewsPage()
+        public ActionResult NewsPage(int num=1)
         {
             try
             {
                 // lấy ra danh sách tin tức
-                IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> listTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadNews(1, 4);
+                IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> listTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadNews(num, 4);
                 return View(listTinTuc);
             }
             catch
@@ -86,7 +86,7 @@ namespace WebsiteQuaTangOnline.Controllers
                 // lấy ra tin tức có mã = id
                 WebsiteQuaTangOnline.Models.TINTUC tt = WebsiteQuaTangOnline.Models.ModelMethod.LoadNewsInfo(id);
                 // lấy danh sách tin tức khác
-                //ViewData["SanPhamLienQuan"] = WebsiteQuaTangOnline.Models.ModelMethod.LoadTop4News();
+                ViewData["DSTin"] = WebsiteQuaTangOnline.Models.ModelMethod.LoadNews(1,10);
                 return View(tt);
             }
             catch

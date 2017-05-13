@@ -2659,6 +2659,12 @@
   <ItemGroup>
     <Content Include="Views\Home\PaySuccess.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\AdminStatistical.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\AdminContact.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
