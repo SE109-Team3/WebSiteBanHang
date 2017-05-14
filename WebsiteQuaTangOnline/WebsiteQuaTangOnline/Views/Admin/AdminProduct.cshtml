@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM>
+@{
     ViewBag.Title = "AdminProduct";
     Layout = "~/Views/adminLayout.cshtml";
 }
@@ -36,44 +37,47 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td align="center">
-                                    <a class="btn btn-default"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                                </td>
-                                <td class="hidden-xs">1</td>
-                                <td>Hộp quà</td>
-                                <td>Quà tết</td>
-                                <td>abc</td>
-                                <td class="col-image"><img src="~/Content/images/item_1.jpg" style="width:100px; height:100px; margin:0 auto;"/></td>
-                                <td>Không có mô tả</td>
-                                <td>1.000.000</td>
-                                <td>100</td>
-                                <td>20</td>
-                            </tr>                          
+							@try
+								{
+									foreach (var item in Model)
+									{
+									<tr>
+										<td align="center">
+											<a class="btn btn-default"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+										</td>
+										<td class="hidden-xs">@item.MaSanPham</td>
+										<td>@item.TenSanPham</td>
+										<td>@item.LOAISANPHAM.TenLoaiSanPham</td>
+										<td>@item.NhaSanXuat</td>
+										<td class="col-image"><img src="@item.UrlHinhAnh" style="width:100px; height:100px; margin:0 auto;" /></td>
+										<td>@item.MoTa</td>
+										<td>@item.DonGia</td>
+										<td>@item.SoLuong</td>
+										<td>@item.SoLuotMua</td>
+									</tr>
+										
+									}
+								}
+								catch { }                  
                         </tbody>
                     </table>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col col-xs-4">Trang 1 của 5 </div>
+                        <div class="col col-xs-4">Trang @ViewBag.tranghientai của @ViewBag.soluongtrang </div>
                         <div class="col col-xs-8">
                             <ul class="pagination hidden-xs pull-right">
-                                <li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
-                                </li>
-                               
+                                @try
+								{
+									for (int i = 1; i <= ViewBag.soluongtrang; i++)
+									{
+										<li>
+											<a href="/Admin/AdminProduct/?min=@i">@i</a>
+										</li>      }
+								}
+
+								catch { }
+
                             </ul>
                             <ul class="pagination visible-xs pull-right">
                                 <li>
