@@ -599,6 +599,14 @@ namespace WebsiteQuaTangOnline.Models
             db.LIENHEs.Add(lh);
             db.SaveChanges();
         }
+        public static IEnumerable<LIENHE> LoadContact()
+        {
+            var data = (from lh in db.LIENHEs
+                        orderby lh.Id
+                        select lh);
+            return data;
+        }
+
         #endregion
     }
 }

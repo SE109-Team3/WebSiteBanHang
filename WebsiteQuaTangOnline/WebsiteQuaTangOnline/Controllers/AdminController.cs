@@ -25,9 +25,11 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult AdminNews()
+        public ActionResult AdminNews(int num=1)
         {
-            return View();
+            // lấy danh sách tin tức
+            IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> dsTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadNews(num, 15);
+            return View(dsTinTuc);
         }
         public ActionResult AddNews()
         {
@@ -39,7 +41,8 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult AdminCategory()
         {
-            return View();
+            IEnumerable<WebsiteQuaTangOnline.Models.LOAISANPHAM> dsLoaiSanPham = WebsiteQuaTangOnline.Models.ModelMethod.LoadCategory();
+            return View(dsLoaiSanPham);
         }
         public ActionResult AddCategory()
         {
@@ -53,5 +56,29 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
+
+        public ActionResult AdminContact(int num=1)
+        {
+            //lấy danh sách liên hệ
+            IEnumerable<WebsiteQuaTangOnline.Models.LIENHE> dsLienHe = WebsiteQuaTangOnline.Models.ModelMethod.LoadContact();
+            //Lấy ra dúng trang cần lấy
+            var list = dsLienHe.Skip(15 * (num - 1)).Take(15).ToList();
+            return View(list);
+        }
+
+        #region chưa hoàn thành
+        public ActionResult AdminStatistical()
+        {
+            return View();
+        }
+
+        // chưa hoàn thành
+        [HttpPost]
+        public ActionResult AdminStatistical(int ltk = 1, int nam = 2017, int thang = 1, int ngay = 1)
+        {
+            // viết hàm thống kê
+            return RedirectToAction("AdminStatistical");
+        }
+        #endregion
     }
 }
