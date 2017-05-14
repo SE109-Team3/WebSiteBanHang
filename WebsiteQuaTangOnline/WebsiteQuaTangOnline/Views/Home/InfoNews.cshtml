@@ -1,27 +1,38 @@
-﻿@{
+﻿@model WebsiteQuaTangOnline.Models.TINTUC
+
+@{
     ViewBag.Title = "News";
     Layout = "~/Views/MasterPage/MasterPage.cshtml";
 }
 
 <div class="box">
     <div class="title">
-        <h3>Tên Tin Tức</h3>
+        <h3>@Model.TieuDe</h3>
     </div>
     <div class="cotainer">
         <div class="news-content">
-            Nội dung tin
+            <img src="@Model.UrlHinhAnh" style="width:70% " />
+            <br />
+            <i>@Model.NgayDang</i><br />
+            @Model.NoiDung
         </div>
         <div class="facebook-comment">
 
         </div>
         <div class="news-related">
             <h3>Danh sách tin tức</h3>
-              <li>
-                  <a href="#">Quà tặng công nghệ - Xu hướng mới dịp tết Ất Mùi</a>
-              </li>
-              <li>
-                  <a href="#">Gợi ý 2 cách bó hoa hồng ấn tượng mà dễ dàng</a>
-              </li>
+            @try
+            {
+                IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> dsTin = (IEnumerable<WebsiteQuaTangOnline.Models.TINTUC>)ViewData["DSTin"];
+                foreach(var tin in dsTin)
+                {
+                    <li>
+                        <a href="/Home/InfoNews/?id=@tin.MaTinTuc">@tin.TieuDe</a>
+                    </li>
+                }
+            }
+            catch { }
+                 
         </div>
     </div>
    

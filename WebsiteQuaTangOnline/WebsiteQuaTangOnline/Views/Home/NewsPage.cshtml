@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WebsiteQuaTangOnline.Models.TINTUC>
+@{
     ViewBag.Title = "NewsPage";
     Layout = "~/Views/MasterPage/MasterPage.cshtml";
 }
@@ -6,33 +7,47 @@
     <div class="title">
         <h3>tin tức</h3>
     </div>
-    <div class="wrap-news">
-        <img src="~/Content/images/new_1.jpg" />
-        <div class="info-news">
-            <div class="title-news">
-                <a href="#">Quà Công nghệ- xu hướng mới</a>
-                <p>Ngày đăng: 10/4/2017</p>
-            </div>
-            <div class="des-news">
-                <p>
-                    Thị trường quà Tết Ất Mùi đang bắt đầu trở nên sôi động,
-                    trong đó điện thoại thông minh hay máy tính bảng đang là sản phẩm hot,
-                    được nhiều khách hàng lựa chọn nhờ giá cả phong phú cùng nhiều tính năng thiết thực.
-                </p>
-            </div>        
-        </div>
-        <div style="clear:both"></div>
-    </div>   
-    <div class="div-page">
-        <ul id="pagination-clean">
-            <li class="previous-off">«Previous</li>
-            <li class="active">1</li>
-            <li><a href="?page=2">2</a></li>
-            <li><a href="?page=3">3</a></li>
-            <li><a href="?page=4">4</a></li>
-            <li class="next"><a href="?page=2">Next »</a></li>
-        </ul>
-    </div>
-    <div style="clear:both"></div>
-</div>
+
+	<div class="list-product">
+		@try
+		{
+			foreach (var item in Model)
+			{
+				<div class="wrap-news">
+					<div class="img">
+						<a href="/Home/InfoNews/?id=@item.MaTinTuc">
+							<img src="@item.UrlHinhAnh"/>
+						</a>
+					</div>
+					<div class="info-news">
+						<div class="title-news">
+							<a href="/Home/InfoNews/?id=@item.MaTinTuc">@item.TieuDe</a>
+							<p>Ngày đăng: @item.NgayDang</p>
+						</div>
+						<div class="des-news">
+							<p>
+								@item.MoTa
+							</p>
+						</div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+			}
+
+		}
+		catch { }
+
+	</div>
+		<div class="div-page">
+			<ul id="pagination-clean">
+				<li class="previous-off">«Previous</li>
+				<li class="active">1</li>
+				<li><a href="?page=2">2</a></li>
+				<li><a href="?page=3">3</a></li>
+				<li><a href="?page=4">4</a></li>
+				<li class="next"><a href="?page=2">Next »</a></li>
+			</ul>
+		</div>
+		<div style="clear:both"></div>
+	</div>
 
