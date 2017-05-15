@@ -13,9 +13,22 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult AdminProduct()
+        public ActionResult AdminProduct(int min = 1)
         {
-            return View();
+            // Load sản phẩm
+            try
+            {
+                // lấy ra danh sách sản phẩm
+                IEnumerable<WebsiteQuaTangOnline.Models.SANPHAM> listSanPham = WebsiteQuaTangOnline.Models.ModelMethod.LoadProduct();
+                listSanPham =listSanPham.Skip(10 * (min - 1)).Take(10).ToList();
+                ViewBag.tranghientai = min;
+                ViewBag.soluongtrang = (WebsiteQuaTangOnline.Models.ModelMethod.LoadProduct().Count() / 10 + 1);
+                return View(listSanPham);
+            }
+            catch
+            {
+                return View();
+            }
         }
         public ActionResult AddProduct()
         {

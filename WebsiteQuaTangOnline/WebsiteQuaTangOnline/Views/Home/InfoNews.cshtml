@@ -11,11 +11,18 @@
     </div>
     <div class="cotainer">
         <div class="news-content">
-            <img src="@Model.UrlHinhAnh" style="width:70% " />
             <br />
             <i>@Model.NgayDang</i><br />
             @Model.NoiDung
         </div>
+		<div class="des-news">
+			<img src="@("/Content/upload/images/Tin tuc/news" + @Model.MaTinTuc + "_1.jpg")" style="width: 500px; height: 750px"/>
+			<img src="@("/Content/upload/images/Tin tuc/news" + @Model.MaTinTuc + "_2.jpg")" style="width: 500px; height: 750px"/>
+			<img src="@("/Content/upload/images/Tin tuc/news" + @Model.MaTinTuc + "_3.jpg")" style="width: 500px; height: 750px"/>
+			<img src="@("/Content/upload/images/Tin tuc/news" + @Model.MaTinTuc + "_4.jpg")" style="width: 500px; height: 750px"/>
+			<img src="@("/Content/upload/images/Tin tuc/news" + @Model.MaTinTuc + "_5.jpg")" style="width: 500px; height: 750px"/>
+		</div>
+
         <div class="facebook-comment">
 
         </div>

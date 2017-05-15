@@ -21,6 +21,7 @@ namespace WebsiteQuaTangOnline.Models
         }
     
         public string MaSanPham { get; set; }
+        
         public string TenSanPham { get; set; }
         public string NhaSanXuat { get; set; }
         public string MaLoaiSanPham { get; set; }

@@ -204,12 +204,10 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số lượng bảng ghi cần lấy</param>
         /// <returns></returns>
-        public static IEnumerable<SANPHAM> LoadProduct(int min=1, int number=10)
+        public static IEnumerable<SANPHAM> LoadProduct()
         {
             var temp = (from sp in db.SANPHAMs select sp).ToList();
-
-            var list = temp.Skip(number * (min - 1)).Take(number).ToList();
-            return list;
+            return temp;
         }
 
         /// <summary>
