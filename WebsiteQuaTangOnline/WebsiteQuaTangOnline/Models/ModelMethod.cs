@@ -37,12 +37,28 @@ namespace WebsiteQuaTangOnline.Models
         }
         public static void UpdateAdmin(DANGNHAP taikhoan)
         {
-            var data = db.DANGNHAPs.Where(tk => (tk.TaiKhoang.Equals(taikhoan.TaiKhoang) && (tk.MatKhau.Equals(GetMD5(taikhoan.MatKhau))))).SingleOrDefault();
+            var data = db.DANGNHAPs.Where(tk => (tk.TaiKhoang.Equals(taikhoan.TaiKhoang))).Single();
             if (data != null)
             {
                 data.MatKhau = taikhoan.MatKhau;
             }
             db.SaveChanges();
+        }
+        public static bool Login(DANGNHAP taikhoan)
+        {
+            var data = db.DANGNHAPs.Where(tk => (tk.TaiKhoang.Equals(taikhoan.TaiKhoang)));
+            if(data==null)
+            {
+                return false;
+            }
+            foreach(var item in data)
+            {
+                if(item.MatKhau==taikhoan.MatKhau)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
         #region Các phương thức cho LOAISANPHAM

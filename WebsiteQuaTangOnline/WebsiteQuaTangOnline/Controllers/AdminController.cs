@@ -3,15 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebsiteQuaTangOnline.Models;
 
 namespace WebsiteQuaTangOnline.Controllers
 {
     public class AdminController : Controller
     {
 
+        public ActionResult HomeAdmin()
+        {
+            if(Session["DangNhap"]==null || (int)Session["DangNhap"]==0)
+            {
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
         public ActionResult Login()
         {
+            if(Session["DangNhap"]==null)
+            {
+                Session["DangNhap"] = 0;
+            }
+            if((int)(Session["DangNhap"])==1)
+            {
+                return RedirectToAction("HomeAdmin");
+            }
             return View();
+        }
+        [HttpPost]
+        public ActionResult Login(string TaiKhoan,string MatKhau)
+        {
+            DANGNHAP tk = new DANGNHAP();
+            tk.TaiKhoang = TaiKhoan;
+            tk.MatKhau = MatKhau;
+            if(ModelMethod.Login(tk))
+            {
+                Session["DangNhap"] = 1;
+                return RedirectToAction("HomeAdmin");
+            }
+            return RedirectToAction("Login");
         }
         public ActionResult AdminProduct(int min = 1)
         {
@@ -86,12 +116,17 @@ namespace WebsiteQuaTangOnline.Controllers
         public ActionResult UpdateNewsSuccess(WebsiteQuaTangOnline.Models.TINTUC tin)
         {
             // code update
+            tin.NgaySua = System.DateTime.Today;
             WebsiteQuaTangOnline.Models.ModelMethod.UpdateNews(tin);
+<<<<<<< HEAD
             return RedirectToAction("AdminNews");
         }
         public ActionResult DeleteNews(int id)
         {
             WebsiteQuaTangOnline.Models.ModelMethod.DeleteNews(id);
+=======
+            
+>>>>>>> f3af06f0a0afcb1d7af8ef147c06fbe941ddd854
             return RedirectToAction("AdminNews");
         }
         public ActionResult AdminCategory()

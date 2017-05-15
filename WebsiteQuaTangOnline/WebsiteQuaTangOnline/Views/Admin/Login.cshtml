@@ -10,30 +10,35 @@
             <h1 class="text-center">
                 <i class="fa fa-dot-circle-o"></i>ADMIN
             </h1>
-            <div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-user fa-fw"></i>
-                        </div> <input class="form-control" placeholder="admin" type="text">
+
+            @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+            {
+                <div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user fa-fw"></i>
+                            </div> <input class="form-control" placeholder="admin" type="text" name="TaiKhoan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-key fa-fw"></i>
+                            </div> <input class="form-control" placeholder="******" type="password" name="MatKhau">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label for="c1"><input id="c1" name="cc" type="checkbox">Nhớ thông tin</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-key fa-fw"></i>
-                        </div> <input class="form-control" placeholder="******" type="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label for="c1"><input id="c1" name="cc" type="checkbox">Nhớ thông tin</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>
