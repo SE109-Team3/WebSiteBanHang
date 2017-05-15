@@ -2,7 +2,7 @@
     ViewBag.Title = "AdminShipment";
     Layout = "~/Views/adminLayout.cshtml";
 }
-
+@model IEnumerable<WebsiteQuaTangOnline.Models.HOADON>
 <div class="container">
     <div class="row">
         <h1 class="text-center">Quản lý giao hàng</h1>
@@ -31,42 +31,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td align="center">
-                                    <a class="btn btn-default"><em class="fa fa-pencil"></em></a> 
-                                    <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                                </td>
-                                <td class="hidden-xs">1</td>
-                                <td>Nguyễn văn a</td>
-                                <td>Xa lộ hà nội</td>
-                                <td>0962906781</td>
-                                <td>1.000.000</td>
-                                <td>10/4/2017</td>
-                            </tr>
+                            @try
+                            {
+                                foreach( var item in Model)
+                                {
+                                    <tr>
+                                        <td align="center">
+                                            <a class="btn btn-default"><em class="fa fa-pencil"></em></a> 
+                                            <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                        </td>
+                                        <td class="hidden-xs">@item.MaHoaDon</td>
+                                        <td>@item.TenKhachHang</td>
+                                        <td>@item.DiaChi</td>
+                                        <td>@item.SoDienThoai</td>
+                                        <td>@WebsiteQuaTangOnline.Models.ModelMethod.IntoMoney(item.MaHoaDon)</td>
+                                        <td>@item.NgayLap</td>
+                                </tr>
+                                }
+                                
+                            }
+                            catch { }
+                            
                         </tbody>
                     </table>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col col-xs-4">Trang 1 của 5 </div>
+                        <div class="col col-xs-4">Trang @ViewBag.tranghientai của @ViewBag.soluongtrang </div>
                         <div class="col col-xs-8">
                             <ul class="pagination hidden-xs pull-right">
-                                <li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
-                                </li>
-
+                                @try
+                                {
+                                    for(int i=1;i<=ViewBag.soluongtrang;i++)
+                                    {
+                                        <li>
+                                            <a href="/Admin/AdminShipment/?min=@i">@i</a>
+                                        </li>
+                                    }
+                                }
+                                catch
+                                {
+                                    
+                                }
                             </ul>
                             <ul class="pagination visible-xs pull-right">
                                 <li>

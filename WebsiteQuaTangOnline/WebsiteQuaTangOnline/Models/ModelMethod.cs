@@ -421,13 +421,14 @@ namespace WebsiteQuaTangOnline.Models
         /// <param name="min">chỉ số trang trong bảng phân trang</param>
         /// <param name="number">số bảng ghi trong 1 trang</param>
         /// <returns>Danh sách hóa đơn</returns>
-        public static IEnumerable<HOADON> LoadBill(int min, int number)
+        public static IEnumerable<HOADON> LoadBill()
         {
             IEnumerable<HOADON> data;
             data = (from hd in db.HOADONs
                     where hd.TrangThai == 0
+                    orderby hd.NgayLap
                     select hd);
-            return data.Skip(number * (min - 1)).Take(number);
+            return data;
         }
 
         public static int LoadIdBill()

@@ -35,12 +35,21 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult UpdateNews()
+        public ActionResult UpdateNews(int id)
         {
-            return View();
+           WebsiteQuaTangOnline.Models.TINTUC tin= WebsiteQuaTangOnline.Models.ModelMethod.LoadNewsInfo(id);
+            return View(tin);
+        }
+        [HttpPost]
+        public ActionResult UpdateNewsSuccess(WebsiteQuaTangOnline.Models.TINTUC tin)
+        {
+            // code update
+            WebsiteQuaTangOnline.Models.ModelMethod.UpdateNews(tin);
+            return RedirectToAction("AdminhNews");
         }
         public ActionResult AdminCategory()
         {
+            // lấy danh sách loại sản phẩm
             IEnumerable<WebsiteQuaTangOnline.Models.LOAISANPHAM> dsLoaiSanPham = WebsiteQuaTangOnline.Models.ModelMethod.LoadCategory();
             return View(dsLoaiSanPham);
         }
@@ -52,9 +61,17 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult AdminShipment()
+        public ActionResult AdminShipment(int num=1)
         {
-            return View();
+            // lấy danh sách các hóa đơn chưa duyệt
+            IEnumerable<WebsiteQuaTangOnline.Models.HOADON> dsHoaDon = WebsiteQuaTangOnline.Models.ModelMethod.LoadBill();
+            // lấy trang hiện tại
+            ViewBag.tranghientai = num;
+            // lấy số lượng trang
+            ViewBag.soluongtrang = (WebsiteQuaTangOnline.Models.ModelMethod.LoadBill().Count() / 10 + 1);
+            dsHoaDon=dsHoaDon.Skip(20 * (num - 1)).Take(20);
+            
+            return View(dsHoaDon);
         }
 
         public ActionResult AdminContact(int num=1)

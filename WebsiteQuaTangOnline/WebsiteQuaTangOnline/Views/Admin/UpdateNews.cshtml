@@ -2,7 +2,7 @@
     ViewBag.Title = "UpdateNews";
     Layout = "~/Views/adminLayout.cshtml";
 }
-
+@model WebsiteQuaTangOnline.Models.TINTUC
 <div class="container">
     <div class="row">
         <h1 class="text-center">Quản lý tin tức</h1>
@@ -16,42 +16,48 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form>
+                    @using (Html.BeginForm("UpdateNewsSuccess", "Admin", FormMethod.Post))
+                    {
                         <table class="add-item news">
                             <tr>
                                 <td class="col-md-2">Mã tin: </td>
-                                <td class="col-md-8"><p>Load tin o day</p></td>
+                                <td class="col-md-8">@Html.TextBoxFor(m => m.MaTinTuc, new {  name="MaTinTuc" })</td>
                             </tr>
                             <tr>
                                 <td class="col-md-2">Tiêu đề: </td>
-                                <td class="col-md-8"><input type="text" name="tieude" /></td>
+                                <td class="col-md-8">@Html.TextBoxFor(m => m.TieuDe, new { name = "TieuDe" })</td>
                             </tr>
                             <tr>
                                 <td class="col-md-2">Mô tả: </td>
-                                <td class="col-md-8"><input type="text" name="motatin" /></td>
+                                <td class="col-md-8">@Html.TextBoxFor(m => m.MoTa, new { name = "MoTa" })</td>
                             </tr>
                             <tr>
                                 <td class="col-md-2">Tác giả: </td>
-                                <td class="col-md-8"><input type="text" name="tacgia" /></td>
+                                <td class="col-md-8">@Html.TextBoxFor(m => m.TacGia, new { name = "TacGia" })</td>
                             </tr>
                             <tr>
                                 <td class="col-md-2">Hình ảnh: </td>
-                                <td class="col-md-8"><input type="file" name="fileanh" /></td>
+                                <td class="col-md-8">@Html.TextBoxFor(m => m.UrlHinhAnh, new { name = "MaTinTuc" })</td>
                             </tr>
                             <tr>
                                 <td class="col-md-2">Nội dung: </td>
-                                <td class="col-md-8">@Html.TextArea("noidung_update", new{@id="noidung_update"})
+                                <td class="col-md-8">
+                                    @Html.TextAreaFor(m => m.NoiDung, new { @id = "noidung_update", name = "NoiDung" })
                                     <script>
                                         CKEDITOR.replace('noidung_update', {
-                                        filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
-                                        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
-                                        filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
-                                        filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
-                                        filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
-                                        filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+                                            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+                                            filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                            filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                            filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
                                         });
                                     </script>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2">Ngày Viết: </td>
+                                <td class="col-md-8">@Html.TextBoxFor(m => m.NgayDang, new { name="NgayDang" })</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -62,7 +68,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
