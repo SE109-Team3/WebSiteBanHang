@@ -34,9 +34,30 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult UpdateProduct()
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddProduct(WebsiteQuaTangOnline.Models.SANPHAM sp)
         {
-            return View();
+            WebsiteQuaTangOnline.Models.ModelMethod.AddProduct(sp);
+            return RedirectToAction("AdminProduct");
+        }
+        public ActionResult UpdateProduct(string id)
+        {
+            WebsiteQuaTangOnline.Models.SANPHAM sp = WebsiteQuaTangOnline.Models.ModelMethod.LoadProductInfo(id);
+            return View(sp);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateProductSuccess(WebsiteQuaTangOnline.Models.SANPHAM sp)
+        {
+            // code update
+            WebsiteQuaTangOnline.Models.ModelMethod.UpdateProduct(sp);
+            return RedirectToAction("AdminProduct");
+        }
+        public ActionResult DeleteProduct(string id)
+        {
+            WebsiteQuaTangOnline.Models.ModelMethod.DeleteProduct(id);
+            return RedirectToAction("AdminProduct");
         }
         public ActionResult AdminNews(int num=1)
         {
@@ -48,17 +69,30 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddNews(WebsiteQuaTangOnline.Models.TINTUC tin)
+        {
+            WebsiteQuaTangOnline.Models.ModelMethod.AddNews(tin);
+            return RedirectToAction("AdminNews");
+        }
         public ActionResult UpdateNews(int id)
         {
-           WebsiteQuaTangOnline.Models.TINTUC tin= WebsiteQuaTangOnline.Models.ModelMethod.LoadNewsInfo(id);
+            WebsiteQuaTangOnline.Models.TINTUC tin= WebsiteQuaTangOnline.Models.ModelMethod.LoadNewsInfo(id);
             return View(tin);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateNewsSuccess(WebsiteQuaTangOnline.Models.TINTUC tin)
         {
             // code update
             WebsiteQuaTangOnline.Models.ModelMethod.UpdateNews(tin);
-            return RedirectToAction("AdminhNews");
+            return RedirectToAction("AdminNews");
+        }
+        public ActionResult DeleteNews(int id)
+        {
+            WebsiteQuaTangOnline.Models.ModelMethod.DeleteNews(id);
+            return RedirectToAction("AdminNews");
         }
         public ActionResult AdminCategory()
         {
@@ -70,9 +104,28 @@ namespace WebsiteQuaTangOnline.Controllers
         {
             return View();
         }
-        public ActionResult UpdateCategory()
+        [HttpPost]
+        public ActionResult AddCategory(WebsiteQuaTangOnline.Models.LOAISANPHAM lsp)
         {
-            return View();
+            WebsiteQuaTangOnline.Models.ModelMethod.AddCategory(lsp);
+            return RedirectToAction("AdminCategory");
+        }
+        public ActionResult UpdateCategory(string id)
+        {
+            WebsiteQuaTangOnline.Models.LOAISANPHAM lsp = WebsiteQuaTangOnline.Models.ModelMethod.LoadCategoryInfo(id);
+            return View(lsp);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateCategorySuccess(WebsiteQuaTangOnline.Models.LOAISANPHAM lsp)
+        {
+            WebsiteQuaTangOnline.Models.ModelMethod.UpdateCategory(lsp);
+            return RedirectToAction("AdminCategory");
+        }
+        public ActionResult DeleteCategory(string id)
+        {
+            WebsiteQuaTangOnline.Models.ModelMethod.DeleteCategory(id);
+            return RedirectToAction("AdminCategory");
         }
         public ActionResult AdminShipment(int num=1)
         {

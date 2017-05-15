@@ -1,43 +1,44 @@
 ﻿@{
-    ViewBag.Title = "UpdateCategory";
-    Layout = "~/Views/adminLayout.cshtml";
+	ViewBag.Title = "UpdateCategory";
+	Layout = "~/Views/adminLayout.cshtml";
 }
-
+@model WebsiteQuaTangOnline.Models.LOAISANPHAM
 <div class="container">
-    <div class="row">
-        <h1 class="text-center">Quản lý loại sản phẩm</h1>
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default panel-table">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col col-xs-6">
-                            <h3 class="panel-title">Thay đổi thông tin</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <table class="add-item">
-                            <tr>
-                                <td class="col-md-2">Mã loại: </td>
-                                <td class="col-md-9"><input type="text" name="masp" /></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Tên loại sản phẩm: </td>
-                                <td class="col-md-9"><input type="text" name="tensp" /></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <div class="col col-xs-1 text-right">
-                                        <button type="submit" class="btn btn-sm btn-primary btn-create">Sửa</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<h1 class="text-center">Quản lý loại sản phẩm</h1>
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default panel-table">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col col-xs-6">
+							<h3 class="panel-title">Thay đổi thông tin</h3>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					@using (Html.BeginForm("UpdateCategorySuccess", "Admin", FormMethod.Post))
+					{
+						<table class="add-item">
+							<tr>
+								<td class="col-md-2">Mã loại: </td>
+								<td class="col-md-9">@Html.TextBoxFor(m => m.MaLoaiSanPham, new { name = "MaLoaiSanPham" })></td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Tên loại sản phẩm: </td>
+								<td class="col-md-9">@Html.TextBoxFor(m => m.TenLoaiSanPham, new { name = "TenLoaiSanPham" })></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div class="col col-xs-1 text-right">
+										<button type="submit" class="btn btn-sm btn-primary btn-create">Sửa</button>
+									</div>
+								</td>
+							</tr>
+						</table>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

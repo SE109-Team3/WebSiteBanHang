@@ -14,7 +14,7 @@
                             <h3 class="panel-title">Danh sách sản phẩm</h3>
                         </div>
                         <div class="col col-xs-6 text-right">
-                            <button type="button" class="btn btn-sm btn-primary btn-create">Thêm mới</button>
+							<a class="btn btn-sm btn-primary btn-create" href="/Admin/AddProduct">Thêm mới</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
 									{
 									<tr>
 										<td align="center">
-											<a class="btn btn-default"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+											<a class="btn btn-default" href="/Admin/UpdateProduct/?id=@item.MaSanPham"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger" href="/Admin/DeleteProduct/?id=@item.MaSanPham"><em class="fa fa-trash"></em></a>
 										</td>
 										<td class="hidden-xs">@item.MaSanPham</td>
 										<td>@item.TenSanPham</td>
@@ -73,7 +73,7 @@
 									{
 										<li>
 											<a href="/Admin/AdminProduct/?min=@i">@i</a>
-										</li>      }
+										</li>     }
 								}
 
 								catch { }

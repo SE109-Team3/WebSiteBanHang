@@ -1,75 +1,77 @@
 ﻿@{
-    ViewBag.Title = "AddProduct";
-    Layout = "~/Views/adminLayout.cshtml";
+	ViewBag.Title = "AddProduct";
+	Layout = "~/Views/adminLayout.cshtml";
 }
 
 <div class="container">
-    <div class="row">
-        <h1 class="text-center">Quản lý sản phẩm</h1>
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default panel-table">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col col-xs-6">
-                            <h3 class="panel-title">Thêm sản phẩm</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <table class="add-item">
-                            <tr>
-                                <td class="col-md-2">Mã sản phẩm: </td>
-                                <td class="col-md-9"><input type="text" name="masp" /></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Tên sản phẩm: </td>
-                                <td class="col-md-9"><input type="text" name="tensp" /></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Loại sản phẩm: </td>
-                                <td class="col-md-9"><input type="text" name="loaisp" /></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Nhà sản xuất: </td>
-                                <td class="col-md-9"><input type="text" name="nhasx" /></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Hình ảnh: </td>
-                                <td class="col-md-9"><input type="file" name="file" /></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Mô tả: </td>
-                                <td class="col-md-9">@Html.TextArea("mota", new { @id = "mota" })
-                                <script>
-                                    CKEDITOR.replace('mota', {
-                                        filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
-                                        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
-                                        filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
-                                        filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
-                                        filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
-                                        filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
-                                    });
-                                </script>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Giá bán: </td>
-                                <td class="col-md-9"><input type="text" id="gia" /></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <div class="col col-xs-1 text-right">
-                                        <button type="submit" class="btn btn-sm btn-primary btn-create">Thêm mới</button>
-                                    </div>
-                                </td>
-                            </tr>
+	<div class="row">
+		<h1 class="text-center">Quản lý sản phẩm</h1>
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default panel-table">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col col-xs-6">
+							<h3 class="panel-title">Thêm sản phẩm</h3>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					@using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post))
+					{
+						<table class="add-item">
+							<tr>
+								<td class="col-md-2">Mã sản phẩm: </td>
+								<td class="col-md-9"><input type="text" name="MaSanPham" /></td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Tên sản phẩm: </td>
+								<td class="col-md-9"><input type="text" name="TenSanPham" /></td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Loại sản phẩm: </td>
+								<td class="col-md-9"><input type="text" name="MaLoaiSanPham" /></td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Nhà sản xuất: </td>
+								<td class="col-md-9"><input type="text" name="NhaSanXuat" /></td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Hình ảnh: </td>
+								<td class="col-md-9"><input type="file" name="UrlHinhAnh" /></td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Mô tả: </td>
+								<td class="col-md-9">
+									@Html.TextArea("mota", new { @id = "mota" })
+									<script>
+										CKEDITOR.replace('mota', {
+											filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+											filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+											filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+											filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+											filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+											filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+										});
+									</script>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-2">Giá bán: </td>
+								<td class="col-md-9"><input type="text" name="DonGia" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div class="col col-xs-1 text-right">
+										<button type="submit" class="btn btn-sm btn-primary btn-create">Thêm mới</button>
+									</div>
+								</td>
+							</tr>
 
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+						</table>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -80,6 +80,12 @@ namespace WebsiteQuaTangOnline.Models
                         select lsp);
             return data;
         }
+
+        public static LOAISANPHAM LoadCategoryInfo(string id)
+        {
+            var data = db.LOAISANPHAMs.Where(lsp => lsp.MaLoaiSanPham.Equals(id)).Single();
+            return data;
+        }
         #endregion
         #region các phương thức cho SANPHAM
         /// <summary>
