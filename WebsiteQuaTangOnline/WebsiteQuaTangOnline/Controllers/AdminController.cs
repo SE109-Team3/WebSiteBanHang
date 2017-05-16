@@ -45,6 +45,10 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult AdminProduct(int min = 1)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             // Load sản phẩm
             try
             {
@@ -62,6 +66,10 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult AddProduct()
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
         [HttpPost]
@@ -73,6 +81,10 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult UpdateProduct(string id)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             WebsiteQuaTangOnline.Models.SANPHAM sp = WebsiteQuaTangOnline.Models.ModelMethod.LoadProductInfo(id);
             return View(sp);
         }
@@ -86,28 +98,45 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult DeleteProduct(string id)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             WebsiteQuaTangOnline.Models.ModelMethod.DeleteProduct(id);
             return RedirectToAction("AdminProduct");
         }
         public ActionResult AdminNews(int num=1)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             // lấy danh sách tin tức
             IEnumerable<WebsiteQuaTangOnline.Models.TINTUC> dsTinTuc = WebsiteQuaTangOnline.Models.ModelMethod.LoadNews(num, 15);
             return View(dsTinTuc);
         }
         public ActionResult AddNews()
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddNews(WebsiteQuaTangOnline.Models.TINTUC tin)
         {
+            tin.NgayDang = System.DateTime.Today;
             WebsiteQuaTangOnline.Models.ModelMethod.AddNews(tin);
             return RedirectToAction("AdminNews");
         }
         public ActionResult UpdateNews(int id)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             WebsiteQuaTangOnline.Models.TINTUC tin= WebsiteQuaTangOnline.Models.ModelMethod.LoadNewsInfo(id);
             return View(tin);
         }
@@ -122,17 +151,29 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult DeleteNews(int id)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             WebsiteQuaTangOnline.Models.ModelMethod.DeleteNews(id);
             return RedirectToAction("AdminNews");
         }
         public ActionResult AdminCategory()
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             // lấy danh sách loại sản phẩm
             IEnumerable<WebsiteQuaTangOnline.Models.LOAISANPHAM> dsLoaiSanPham = WebsiteQuaTangOnline.Models.ModelMethod.LoadCategory();
             return View(dsLoaiSanPham);
         }
         public ActionResult AddCategory()
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
         [HttpPost]
@@ -143,6 +184,10 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult UpdateCategory(string id)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             WebsiteQuaTangOnline.Models.LOAISANPHAM lsp = WebsiteQuaTangOnline.Models.ModelMethod.LoadCategoryInfo(id);
             return View(lsp);
         }
@@ -155,11 +200,19 @@ namespace WebsiteQuaTangOnline.Controllers
         }
         public ActionResult DeleteCategory(string id)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             WebsiteQuaTangOnline.Models.ModelMethod.DeleteCategory(id);
             return RedirectToAction("AdminCategory");
         }
         public ActionResult AdminShipment(int num=1)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             // lấy danh sách các hóa đơn chưa duyệt
             IEnumerable<WebsiteQuaTangOnline.Models.HOADON> dsHoaDon = WebsiteQuaTangOnline.Models.ModelMethod.LoadBill();
             // lấy trang hiện tại
@@ -172,6 +225,10 @@ namespace WebsiteQuaTangOnline.Controllers
 
         public ActionResult AdminContact(int num=1)
         {
+            if (Session["DangNhap"] == null || (int)Session["DangNhap"] == 0)
+            {
+                return RedirectToAction("Login");
+            }
             //lấy danh sách liên hệ
             IEnumerable<WebsiteQuaTangOnline.Models.LIENHE> dsLienHe = WebsiteQuaTangOnline.Models.ModelMethod.LoadContact();
             //Lấy ra dúng trang cần lấy
@@ -182,6 +239,10 @@ namespace WebsiteQuaTangOnline.Controllers
         #region chưa hoàn thành
         public ActionResult AdminStatistical()
         {
+            if(Session["DangNhap"]==null || (int)Session["DangNhap"]==0)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
 
