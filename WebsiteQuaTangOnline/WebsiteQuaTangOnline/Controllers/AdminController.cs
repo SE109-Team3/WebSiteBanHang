@@ -118,15 +118,11 @@ namespace WebsiteQuaTangOnline.Controllers
             // code update
             tin.NgaySua = System.DateTime.Today;
             WebsiteQuaTangOnline.Models.ModelMethod.UpdateNews(tin);
-<<<<<<< HEAD
             return RedirectToAction("AdminNews");
         }
         public ActionResult DeleteNews(int id)
         {
             WebsiteQuaTangOnline.Models.ModelMethod.DeleteNews(id);
-=======
-            
->>>>>>> f3af06f0a0afcb1d7af8ef147c06fbe941ddd854
             return RedirectToAction("AdminNews");
         }
         public ActionResult AdminCategory()
@@ -171,7 +167,6 @@ namespace WebsiteQuaTangOnline.Controllers
             // lấy số lượng trang
             ViewBag.soluongtrang = (WebsiteQuaTangOnline.Models.ModelMethod.LoadBill().Count() / 10 + 1);
             dsHoaDon=dsHoaDon.Skip(20 * (num - 1)).Take(20);
-            
             return View(dsHoaDon);
         }
 

@@ -37,12 +37,15 @@
 							</tr>
 							<tr>
 								<td class="col-md-2">Hình ảnh: </td>
-								<td class="col-md-8"><input type="file" name="UrlHinhAnh" /></td>
+								<td class="col-md-8">
+									<input type="text" name="UrlHinhAnh" id="Image" style="width:80%" />
+									<input type="button" value="Chọn file" id="btnSelectImg" class="btn" style="width:10%" onclick="BrowseServer()" />
+								</td>
 							</tr>
 							<tr>
 								<td class="col-md-2">Nội dung: </td>
 								<td class="col-md-8">
-									<textarea name="NoiDung" id="noidung"></textarea>
+									@Html.TextArea("NoiDung", new { id = "noidung", name = "NoiDung" })
 									<script>
 										CKEDITOR.replace('noidung', {
 											filebrowserBrowseUrl: '/ckfinder/ckfinder.html',

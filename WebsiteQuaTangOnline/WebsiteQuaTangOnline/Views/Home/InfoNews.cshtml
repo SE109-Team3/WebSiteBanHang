@@ -13,7 +13,7 @@
         <div class="news-content">
             <br />
             <i>@Model.NgayDang</i><br />
-            @Model.NoiDung
+            @Html.Raw(Model.NoiDung);
         </div>
 		<div class="des-news">
 			<img src="@("/Content/upload/images/Tin tuc/news" + @Model.MaTinTuc + "_1.jpg")" style="width: 500px; height: 750px"/>
