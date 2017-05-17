@@ -71,7 +71,6 @@ E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQua
 E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\PagedList.xml
 E:\HocTap\HK2-2016-2017\SE109\Git\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\PagedList.Mvc.xml
 E:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.csprojResolveAssemblyReference.cache
-D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.csprojResolveAssemblyReference.cache
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\WebsiteQuaTangOnline.dll.config
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\WebsiteQuaTangOnline.dll
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\WebsiteQuaTangOnline.pdb
@@ -107,5 +106,6 @@ D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\System.Web
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\System.Web.WebPages.xml
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\System.Web.WebPages.Deployment.xml
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\bin\System.Web.WebPages.Razor.xml
+D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.csprojResolveAssemblyReference.cache
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.dll
 D:\SE109\WebSiteBanHang\WebsiteQuaTangOnline\WebsiteQuaTangOnline\obj\Debug\WebsiteQuaTangOnline.pdb
