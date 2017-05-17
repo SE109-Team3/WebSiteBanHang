@@ -35,7 +35,7 @@
                                 {
                                     <tr>
                                         <td align="center">
-                                            <a class="btn btn-default" href="/Admin/UpdateCategory/?id=@item.MaLoaiSanPham"><em class="fa fa-pencil" ></em></a> <a class="btn btn-danger" href="/Admin/DeleteCategory/?id=@item.MaLoaiSanPham"><em class="fa fa-trash"></em></a>
+                                            <a class="btn btn-default" href="/Admin/UpdateCategory/?id=@item.MaLoaiSanPham"><em class="fa fa-pencil" ></em></a> <a class="btn btn-danger" onclick="return DeleteConfirm();" href="/Admin/DeleteCategory/?id=@item.MaLoaiSanPham"><em class="fa fa-trash"></em></a>
                                         </td>
                                         <td class="hidden-xs">@item.MaLoaiSanPham</td>
                                         <td>@item.TenLoaiSanPham</td>

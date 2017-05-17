@@ -19,7 +19,7 @@
                     @using (Html.BeginForm("UpdateNewsSuccess", "Admin", FormMethod.Post))
                     {
                         <table class="add-item news">
-                            <tr>
+                            <tr style="display:none">
                                 <td class="col-md-2">Mã tin: </td>
                                 <td class="col-md-8">@Html.TextBoxFor(m => m.MaTinTuc, new {  name="MaTinTuc" })</td>
                             </tr>
@@ -37,7 +37,10 @@
                             </tr>
                             <tr>
                                 <td class="col-md-2">Hình ảnh: </td>
-                                <td class="col-md-8">@Html.TextBoxFor(m => m.UrlHinhAnh, new { name = "MaTinTuc" })</td>
+                                <td class="col-md-8">
+                                    @Html.TextBoxFor(m => m.UrlHinhAnh, new { name = "UrlHinhAnh" , id="Image"})
+                                    <input type="button" value="Chọn file" id="btnSelectImg" class="btn" style="width:10%" onclick="BrowseServer()" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="col-md-2">Nội dung: </td>

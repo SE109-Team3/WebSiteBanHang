@@ -43,7 +43,7 @@
                                 {
                                     <tr>
                                         <td align="center">
-                                            <a class="btn btn-default" href="/Admin/UpdateNews/?id=@item.MaTinTuc"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                            <a class="btn btn-default" href="/Admin/UpdateNews/?id=@item.MaTinTuc"><em class="fa fa-pencil"></em></a> <a class="btn btn-danger" onclick="return DeleteConfirm();" href="/Admin/DeleteNews/?id=@item.MaTinTuc"><em class="fa fa-trash"></em></a>
                                         </td>
                                         <td class="hidden-xs">@item.MaTinTuc</td>
                                         <td>@item.TieuDe</td>

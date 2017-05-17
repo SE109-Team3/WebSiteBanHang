@@ -19,7 +19,7 @@
 					@using (Html.BeginForm("UpdateProductSuccess", "Admin", FormMethod.Post))
 					{
 						<table class="add-item">
-							<tr>
+							<tr style="display:none">
 								<td class="col-md-2">Mã sản phẩm: </td>
 								<td class="col-md-9">@Html.TextBoxFor(m => m.MaSanPham, new { name = "MaSanPham" })</td>
 							</tr>
@@ -29,7 +29,22 @@
 							</tr>
 							<tr>
 								<td class="col-md-2">Loại sản phẩm: </td>
-								<td class="col-md-9">@Html.TextBoxFor(m => m.LOAISANPHAM.TenLoaiSanPham, new { name = "TenLoaiSanPham" })</td>
+								<td class="col-md-9">
+                                    <select name="MaLoaiSanPham" class="dropdown-select">
+                                        @foreach (var item in WebsiteQuaTangOnline.Models.ModelMethod.LoadCategory())
+                                        {
+                                            if(item.MaLoaiSanPham==Model.MaLoaiSanPham)
+                                            {
+                                                <option selected="selected" value="@item.MaLoaiSanPham">@item.TenLoaiSanPham</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.MaLoaiSanPham">@item.TenLoaiSanPham</option>
+                                            }
+                                            
+                                        }
+                                    </select>
+                                </td>
 							</tr>
 							<tr>
 								<td class="col-md-2">Nhà sản xuất: </td>
@@ -37,7 +52,10 @@
 							</tr>
 							<tr>
 								<td class="col-md-2">Hình ảnh: </td>
-								<td class="col-md-9">@Html.TextBoxFor(m => m.UrlHinhAnh, new { name = "MaSanPham" })</td>
+								<td class="col-md-9">
+                                    @Html.TextBoxFor(m => m.UrlHinhAnh, new { name = "UrlHinhAnh", id = "Image" })
+                                    <input type="button" value="Chọn file" id="btnSelectImg" class="btn" style="width:10%" onclick="BrowseServer()" />
+                                </td>
 							</tr>
 							<tr>
 								<td class="col-md-2">Mô tả: </td>

@@ -124,6 +124,7 @@ namespace WebsiteQuaTangOnline.Models
             if (data != null)
             {
                 data.TenSanPham = sp.TenSanPham;
+                data.MaLoaiSanPham = sp.MaLoaiSanPham;
                 data.NhaSanXuat = sp.NhaSanXuat;
                 data.UrlHinhAnh = sp.UrlHinhAnh;
                 data.MoTa = sp.MoTa;

@@ -74,6 +74,14 @@ namespace WebsiteQuaTangOnline.Controllers
         public ActionResult UpdateProduct(string id)
         {
             WebsiteQuaTangOnline.Models.SANPHAM sp = WebsiteQuaTangOnline.Models.ModelMethod.LoadProductInfo(id);
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach(var item in ModelMethod.LoadCategory())
+            {
+                items.Add(new SelectListItem { Text = item.TenLoaiSanPham, Value = item.MaLoaiSanPham });
+            }
+            IEnumerable<SelectListItem> lstItems = (from i in items
+                                                    select i);
+            ViewBag.MovieType = lstItems;
             return View(sp);
         }
         [HttpPost]
@@ -103,6 +111,7 @@ namespace WebsiteQuaTangOnline.Controllers
         [ValidateInput(false)]
         public ActionResult AddNews(WebsiteQuaTangOnline.Models.TINTUC tin)
         {
+            tin.NgayDang = System.DateTime.Today;
             WebsiteQuaTangOnline.Models.ModelMethod.AddNews(tin);
             return RedirectToAction("AdminNews");
         }

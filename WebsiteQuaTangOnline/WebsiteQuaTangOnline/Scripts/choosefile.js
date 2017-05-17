@@ -8,3 +8,8 @@ function BrowseServer() {
 function SetFileField(fileUrl) {
     document.getElementById('Image').value = fileUrl;
 }
+
+function DeleteConfirm()
+{
+    return confirm("Bạn có chắc muốn xóa mục này?");
+}
